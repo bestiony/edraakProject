@@ -1,4 +1,5 @@
 seed the database
+
 create relationships (dary)
 create cart model and controllers
 create products view
