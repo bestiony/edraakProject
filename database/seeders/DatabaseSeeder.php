@@ -4,10 +4,13 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\CategoryHasSubcategory;
+use App\Models\Image;
+use App\Models\Product;
 use App\Models\ReturnPolicy;
 use App\Models\Subcategory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,6 +29,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
             // --------- seeding categories -----------
+        if (Category::count() == 0){
         Category::create([
             'id'=>1,
             'name'=>'Men'
@@ -38,8 +42,10 @@ class DatabaseSeeder extends Seeder
             'id'=>3,
             'name'=>'Kids'
         ]);
+    }
 
             // --------- seeding subcategories -----------
+        if(Subcategory::count()==0){
         Subcategory::create([
             'id'=>1,
             'name'=>'Jackets'
@@ -64,8 +70,9 @@ class DatabaseSeeder extends Seeder
             'id'=>6,
             'name'=>'Accessories'
         ]);
-        $categories = Category::all();
-        $subcategories = Subcategory::all();
+    }
+    if (CategoryHasSubcategory::count()==0){
+
         for($i = 1; $i<4;$i++){
             for($j = 1; $j<7;$j++){
                 $filling = [
@@ -74,10 +81,49 @@ class DatabaseSeeder extends Seeder
                 ];
                 CategoryHasSubcategory::create($filling);
         }
+    }
 
         }
             // ------------   --------------
+        if(ReturnPolicy::count() == 0){
         ReturnPolicy::factory(10)->create();
-
     }
+
+
+    if(Image::count()== 0){
+        Image::create([
+            'id'=>1,
+            'image_url'=>'https://m.media-amazon.com/images/I/51aiBTahmbL._AC_UX466_.jpg'
+        ]);
+        Image::create([
+            'id'=>2,
+            'image_url'=>'https://m.media-amazon.com/images/I/61XE+thKb0L._AC_UY550_.jpg'
+        ]);
+        Image::create([
+            'id'=>3,
+            'image_url'=>'https://m.media-amazon.com/images/I/61H3RcZUPaL._AC_UY550_.jpg'
+        ]);}
+        // -------------- seeding products ---------------
+        if(Product::count()==0){
+        $faker = Faker::create();
+        for($i =1; $i <= 60; $i++){
+            $category = rand(1,3);
+            $product = [
+                'id'=>$i,
+                'name'=>$faker->name(),
+                'description' => $faker->paragraph(5),
+                'price'=> rand(20,1000),
+                'size' => rand(1,5),
+                'image_id'=> $category,
+                'return_policy_id'=> ReturnPolicy::inRandomOrder()->first()->id,
+                'category_id' => $category
+            ];
+            Product::create($product);
+        }
+        }
+    }
+
+
+
+
 }

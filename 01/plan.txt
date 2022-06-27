@@ -1,6 +1,6 @@
-seed the database
+DONE:::seed the database
 
-create relationships (dary)
+DONE:::create relationships (dary)
 create cart model and controllers
 create products view
 create categories view
