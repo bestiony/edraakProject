@@ -1,0 +1,25 @@
+seed the database
+create relationships (dary)
+create cart model and controllers
+create products view
+create categories view
+
+
+
+local env
+
+
+
+
+online env
+DB_CONNECTION=mysql
+DB_HOST=db4free.net
+DB_PORT=3306
+DB_DATABASE=edraak_project
+DB_USERNAME=bestiony2
+DB_PASSWORD=somedata
+
+
+online env new
+
+
