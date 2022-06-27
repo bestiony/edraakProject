@@ -14,13 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('customer_id');
+            $table->id('id');
+            $table->foreignId('user_id')->constrained();
+            // $table->integer('user_id')->unsigned();
             $table->string('status');
-            $table
-                ->foreign('customer_id')
-                ->references('id')
-                ->on('users');
+            // $table
+            //     ->foreign('user_id')
+            //     ->references('id')
+            //     ->on('users');
             $table->timestamps();
         });
     }

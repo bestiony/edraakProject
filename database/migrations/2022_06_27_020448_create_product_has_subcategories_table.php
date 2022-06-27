@@ -14,14 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('product_has_subcategories', function (Blueprint $table) {
-            $table->integer('product_id')->unsigned();
-            $table->integer('subcategory_id')->unsigned();
-            $table->foreign('product_id')
-                ->references('id')
-                ->on('products');
-            $table->foreign('subcategory_id')
-                ->references('id')
-                ->on('subcategories');
+            $table->foreignId('product_id')->constrained();
+            $table->foreignId('subcategory_id')->constrained();
+
+            // $table->integer('product_id')->unsigned();
+            // $table->integer('subcategory_id')->unsigned();
+            // $table->foreign('product_id')
+            //     ->references('id')
+            //     ->on('products');
+            // $table->foreign('subcategory_id')
+            //     ->references('id')
+            //     ->on('subcategories');
         });
     }
 

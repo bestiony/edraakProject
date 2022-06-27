@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('images', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id('id');
             $table->string('image_url');
             $table->timestamps();
         });

@@ -14,15 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('order_has_products', function (Blueprint $table) {
-            $table->integer('order_id')->unsigned();
-            $table->integer('product_id')->unsigned();
+            $table->foreignId('order_id')->constrained();
+            $table->foreignId('product_id')->constrained();
+
             $table->integer('quantity')->nullable(false);
-            $table->foreign('order_id')
-                ->references('id')
-                ->on('orders');
-            $table->foreign('product_id')
-                ->references('id')
-                ->on('products');
+            // $table->integer('order_id')->unsigned();
+            // $table->integer('product_id')->unsigned();
+            // $table->foreign('order_id')
+            //     ->references('id')
+            //     ->on('orders');
+            // $table->foreign('product_id')
+            //     ->references('id')
+            //     ->on('products');
         });
     }
 

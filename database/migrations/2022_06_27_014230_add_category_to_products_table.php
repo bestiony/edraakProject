@@ -26,10 +26,12 @@ return new class extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->integer('category_id')->unsigned();
-            $table->foreign('category_id')
-                ->references('id')
-                ->on('categories');
+            $table->foreignId('category_id')->constrained();
+
+            // $table->integer('category_id')->unsigned();
+            // $table->foreign('category_id')
+            //     ->references('id')
+            //     ->on('categories');
         });
     }
 };

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('return_policies', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id('id');
             $table->text('description');
             $table->timestamps();
         });
