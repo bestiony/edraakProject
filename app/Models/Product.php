@@ -18,7 +18,7 @@ class Product extends Model
     }
 
     public function returnPolicy(){
-        return $this->hasOne(ReturnPolicy::class,'return_policy_id');
+        return $this->belongsTo(ReturnPolicy::class, 'return_policy_id','id');
     }
 
     public function category(){
@@ -26,6 +26,6 @@ class Product extends Model
     }
 
     public function subcategories(){
-        return $this->belongsToMany(Subcategory::class);
+        return $this->belongsToMany(Subcategory::class, 'product_has_subcategories');
     }
 }

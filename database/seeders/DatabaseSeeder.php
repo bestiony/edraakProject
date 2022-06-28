@@ -2,15 +2,19 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
-use App\Models\CategoryHasSubcategory;
+use App\Models\User;
 use App\Models\Image;
 use App\Models\Product;
-use App\Models\ReturnPolicy;
+use App\Models\Category;
 use App\Models\Subcategory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
+use App\Models\ReturnPolicy;
+use Illuminate\Database\Seeder;
+use App\Models\ProductHasSubcategory;
+use App\Models\CategoryHasSubcategory;
+use App\Models\Order;
+use App\Models\OrderHasProduct;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -115,12 +119,56 @@ class DatabaseSeeder extends Seeder
                 'price'=> rand(20,1000),
                 'size' => rand(1,5),
                 'image_id'=> $category,
-                'return_policy_id'=> ReturnPolicy::inRandomOrder()->first()->id,
+                'return_policy_id'=> ReturnPolicy::first()->id,
                 'category_id' => $category
             ];
             Product::create($product);
         }
         }
+
+        if(ProductHasSubcategory::count()==0){
+            ProductHasSubcategory::create([
+                'product_id'=>1,
+                'subcategory_id'=>4
+            ]);
+            ProductHasSubcategory::create([
+                'product_id'=>1,
+                'subcategory_id'=>2
+            ]);
+            ProductHasSubcategory::create([
+                'product_id'=>1,
+                'subcategory_id'=>1
+            ]);
+        }
+
+
+        if (Order::count()==0){
+            Order::create([
+                'id'=>1,
+                'user_id'=>1,
+                'status'=>1
+            ]);
+        }
+
+
+        if (OrderHasProduct::count()==0){
+            OrderHasProduct::create([
+                'order_id'=>1,
+                'product_id'=>1,
+                'quantity'=>3
+            ]);
+            OrderHasProduct::create([
+                'order_id'=>1,
+                'product_id'=>24,
+                'quantity'=>1
+            ]);
+            OrderHasProduct::create([
+                'order_id'=>1,
+                'product_id'=>3,
+                'quantity'=>5
+            ]);
+        }
+
     }
 
 

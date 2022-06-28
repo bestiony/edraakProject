@@ -12,7 +12,7 @@ class Subcategory extends Model
     use HasFactory;
 
     public function categories(){
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class,'category_has_subcategories');
     }
 
     public function products(){

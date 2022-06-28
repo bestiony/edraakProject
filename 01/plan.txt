@@ -1,6 +1,20 @@
 DONE:::seed the database
 
 DONE:::create relationships (dary)
+DONE:::check that relationships work fine
+create customer journey
+create templates
+    landing page
+    products page / search results
+    single product page
+    cart page
+    check out page
+    orders list + statuses
+    single order details
+create Admin auth ( middlwear || gate || sth else)
+
+
+
 create products view
 create cart model and controllers
 create categories view
