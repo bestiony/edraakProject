@@ -1,8 +1,8 @@
 DONE:::seed the database
 
 DONE:::create relationships (dary)
-create cart model and controllers
 create products view
+create cart model and controllers
 create categories view
 
 
