@@ -14,7 +14,7 @@ class Product extends Model
     use HasFactory;
 
     public function image(){
-        return $this->hasOne(Image::class,'image_id');
+        return $this->belongsTo(Image::class,'image_id');
     }
 
     public function returnPolicy(){

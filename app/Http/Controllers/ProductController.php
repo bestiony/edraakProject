@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('products.index',['products'=>Product::all()]);
+        return view('products.index',['products'=>Product::latest()->paginate('10')]);
     }
 
     /**
@@ -46,7 +46,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-
+        // dd($product->image->image_url);
+        return view('products.show',['product'=>$product]);
     }
 
     /**
