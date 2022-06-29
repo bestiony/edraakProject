@@ -3,6 +3,22 @@ DONE:::seed the database
 DONE:::create relationships (dary)
 DONE:::check that relationships work fine
 create customer journey
+    landing page
+    browse products
+    check product page
+    add to cart
+        - redirect to log in/ register
+            get authenticated
+            back to product page
+    see cart page
+        modify quantity or remove products from cart
+    proceed to check out
+        add delivery and payment information
+        confirm order
+        redirect to order info page
+        follow order status or cancel if not processed yet
+
+
 create templates
     landing page
     products page / search results
@@ -11,6 +27,7 @@ create templates
     check out page
     orders list + statuses
     single order details
+
 create Admin auth ( middlwear || gate || sth else)
 
 
@@ -26,7 +43,7 @@ local env
 
 
 
-online env
+online old env
 DB_CONNECTION=mysql
 DB_HOST=db4free.net
 DB_PORT=3306
@@ -36,5 +53,10 @@ DB_PASSWORD=somedata
 
 
 online env new
-
+DB_CONNECTION=mysql
+DB_HOST=eu-cdbr-west-02.cleardb.net
+DB_PORT=3306
+DB_DATABASE=heroku_60347b0203471a5
+DB_USERNAME=b2aa89c867f426
+DB_PASSWORD=658f271c
 

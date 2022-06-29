@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -24,5 +25,39 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+//landing page
+
+// browse products
+Route::get('/products',[ProductController::class,'index'])->name('products');
+
+// check product page
 Route::get('/product/{product}',[ProductController::class,'show']);
-Route::get('/products',[ProductController::class,'index']);
+
+// add to cart order
+Route::post('add-to-cart/{product}',[CartController::class,'store'])->name('add-to-cart');
+
+// see cart page
+Route::get('cart',[CartController::class,'show'])->name('cart');
+
+// modify quantity
+Route::post('modify-cart/{product}',[CartController::class,'edit'])->name('modify-cart');
+
+
+// remove products from cart
+Route::post('delete-from-cart/{product}',[CartController::class,'delete'])->name('delete-from-cart');
+
+// show  check out page
+Route::get('checkout',[CartController::class,'checkout'])->name('checkout');
+
+// add delivery and payment information
+
+
+// confirm order (create)
+
+
+// show order info page
+
+
+
+
+
