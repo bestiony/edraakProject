@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Address;
 use App\Models\User;
 use App\Models\Image;
 use App\Models\Product;
@@ -141,12 +142,25 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        if(Address::count()==0){
+            Address::create([
+                'id'=> 1,
+                'user_id' =>1,
+                'address_line_1' => 'bouafia block 716/7',
+                'address_line_2' => ' hbb djelfa',
+                'city' => 'hbb',
+                'state'=> 'djelfa',
+                'country'=>'Algeria ',
+                'postal_code'=>'17023'
+            ]);
+        }
 
         if (Order::count()==0){
             Order::create([
                 'id'=>1,
                 'user_id'=>1,
-                'status'=>1
+                'status'=>1,
+                'address_id'=> 1
             ]);
         }
 
@@ -155,12 +169,12 @@ class DatabaseSeeder extends Seeder
             OrderHasProduct::create([
                 'order_id'=>1,
                 'product_id'=>1,
-                'quantity'=>3
+                'quantity'=>3,
             ]);
             OrderHasProduct::create([
                 'order_id'=>1,
                 'product_id'=>24,
-                'quantity'=>1
+                'quantity'=>1,
             ]);
             OrderHasProduct::create([
                 'order_id'=>1,
@@ -168,6 +182,8 @@ class DatabaseSeeder extends Seeder
                 'quantity'=>5
             ]);
         }
+
+
 
     }
 

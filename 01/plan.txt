@@ -3,18 +3,18 @@ DONE:::seed the database
 DONE:::create relationships (dary)
 DONE:::check that relationships work fine
 create customer journey
-    landing page
-    browse products
-    check product page
-    add to cart
+    DONE:::landing page
+    DONE:::browse products
+    DONE:::check product page
+    DONE:::add to cart
         - redirect to log in/ register
             get authenticated
             back to product page
-    see cart page
-        modify quantity or remove products from cart
-    proceed to check out
-        add delivery and payment information
-        confirm order
+    DONE:::see cart page
+        DONE:::modify quantity or remove products from cart
+    DONE:::proceed to check out
+        DONE:::add delivery and payment information
+        DONE:::confirm order
         redirect to order info page
         follow order status or cancel if not processed yet
 
@@ -33,8 +33,8 @@ create Admin auth ( middlwear || gate || sth else)
 
 
 create products view
-create cart model and controllers
-create categories view
+DONE:::create cart model and controllers
+DONE:::create categories view
 
 
 

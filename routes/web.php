@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,16 +48,15 @@ Route::post('modify-cart/{product}',[CartController::class,'edit'])->name('modif
 Route::post('delete-from-cart/{product}',[CartController::class,'delete'])->name('delete-from-cart');
 
 // show  check out page
+// add delivery and payment information
 Route::get('checkout',[CartController::class,'checkout'])->name('checkout');
 
-// add delivery and payment information
-
-
 // confirm order (create)
+Route::post('confirm-order',[CartController::class,'confirmOrder'])->name('confirm-order');
 
 
 // show order info page
-
+Route::get('orders',[OrderController::class,'index'])->name('orders');
 
 
 

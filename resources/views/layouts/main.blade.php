@@ -10,9 +10,10 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>hello Layout</h1>
-    <a href="{{route('home')}}" class="rounded">Home</a>
-    <a href="{{route('cart')}}" class="rounded">cart</a>
+    <h1 class="font-bold my-4  w-sm">Amouna</h1>
+    <a href="{{route('home')}}" class="rounded bg-green-600 text-white px-4 py-2 hover:bg-green-400">Home</a>
+    <a href="{{route('cart')}}" class="rounded bg-red-600 text-white px-4 py-2 hover:bg-red-400">cart</a>
+    <a href="{{route('orders')}}" class="rounded bg-blue-600 text-white px-4 py-2 hover:bg-blue-400">orders</a>
     @yield('content')
 </body>
 </html>

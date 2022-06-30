@@ -1,6 +1,6 @@
 @props(['product'])
 <div class="justify-center w-1/2 md:w-1/4 h-1/5 block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-    <div class="h-md">
+    <div class="h-96">
         <img src="{{$product->image->image_url}}" alt="">
     </div>
     <div class="flex flex-col">

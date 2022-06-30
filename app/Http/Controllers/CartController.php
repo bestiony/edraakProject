@@ -2,31 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\OrderHasProduct;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
     public function store(Product $product){
+
         $id = $product->id;
         $cart = session()->get('cart');
-        if (!$cart){
-            $cart[$id] = [
-                'product'=>$product,
-                'quantity'=>0
-            ];
-        }
-        if (!array_key_exists($id,$cart)){
-            $cart[$id] = [
-                'product'=>$product,
-                'quantity'=>0
-            ];
-        }
-        if ($cart[$id]){
+
+        if (isset($cart[$id])){
             $cart[$id]['quantity']++;
+            $cart[$id]['total']+= $product->price;
         }
 
+        if ($cart === null){
+            $cart[$id] = [
+                'product'=>$product,
+                'quantity'=>1,
+                'total'=>$product->price
+            ];
+        }
+        if (array_key_exists($id,$cart) === false){
+            $cart[$id] = [
+                'product'=>$product,
+                'quantity'=>1,
+                'total'=>$product->price
+            ];
+        }
+
+
         session()->put('cart',$cart);
+        // dd($cart);
         return redirect()->back();
     }
 
@@ -47,6 +57,8 @@ class CartController extends Controller
             return redirect()->back()->with('message',"product was removed from cart");
         }
         $cart[$id]['quantity'] = $newQuantity;
+        // dd($cart[$id]['product']['price']);
+        $cart[$id]['total'] = $newQuantity * $cart[$id]['product']['price'];
         session()->put('cart',$cart);
         return redirect()->back()->with('message',"quantity changed successfully");
     }
@@ -61,6 +73,30 @@ class CartController extends Controller
 
 
     public function checkout(){
+        $cart = session()->get('cart');
+        if (!$cart){
+            return redirect()->route('products')->with('message','nothing to checkout, cart empty');
+        }
         return view('products.checkout');
+    }
+
+    public function confirmOrder(Request $request){
+        $address = new AdressController;
+        $addressId =$address->create($request);
+        $cart = session()->get('cart');
+        $order = Order::create([
+            'user_id'=>auth()->id(),
+            'address_id'=>$addressId,
+            'status'=>'1'
+        ]);
+        foreach($cart as $item){
+            $orderProduct = [
+                'order_id'=>$order->id,
+                'product_id'=>$item['product']->id,
+                'quantity'=>$item['quantity']
+            ];
+            OrderHasProduct::create($orderProduct);
+        }
+        return redirect()->route('home');
     }
 }

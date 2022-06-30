@@ -14,7 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('addresses', function (Blueprint $table) {
-            $table->id();
+            $table->id('id');
+            $table->foreignId('user_id')->constrained();
+            $table->string('address_line_1');
+            $table->string('address_line_2')->nullable();
+            $table->string('city');
+            $table->string('state')->nullable();
+            $table->string('country');
+            $table->string('postal_code');
             $table->timestamps();
         });
     }

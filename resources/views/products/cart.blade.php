@@ -1,11 +1,12 @@
 @extends('layouts.main')
 @section('content')
 @php
-$cart = session()->get('cart');
+$cart = session()->get('cart') ;
 // dd($cart);
 
 @endphp
 <div class="container mx-auto flex flex-col">
+    @if($cart)
     @foreach($cart as $cartItem)
     @php
         $product = $cartItem['product'];
@@ -17,6 +18,8 @@ $cart = session()->get('cart');
         <h3>{{$cartItem['product']->name}}</h3>
         <h3>quantity</h3>
         <h3>{{$cartItem['quantity']}}</h3>
+        <h3>total</h3>
+        <h3>{{$cartItem['total']}}</h3>
         <form method="POST" action="{{route('modify-cart',['product'=>$id])}}">
             @csrf
             <input type="number" name="quantity" id="" value="{{$quantity}}">
@@ -28,6 +31,9 @@ $cart = session()->get('cart');
     @endforeach
 </div>
 <a href="{{route('checkout')}}" class="rounded bg-green-500 text-white hover:bg-green-300">Proceed to Checkout</a>
+    @else
+    <h1>Cart Empty</h1>
+    @endif
 
 
 @endsection
