@@ -2,19 +2,21 @@
 
 namespace Database\Seeders;
 
-use App\Models\Address;
 use App\Models\User;
+use App\Models\Admin;
 use App\Models\Image;
+use App\Models\Order;
+use App\Models\Address;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
 use Faker\Factory as Faker;
 use App\Models\ReturnPolicy;
+use App\Models\OrderHasProduct;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use App\Models\ProductHasSubcategory;
 use App\Models\CategoryHasSubcategory;
-use App\Models\Order;
-use App\Models\OrderHasProduct;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
@@ -32,6 +34,22 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+            // ------------- users ------------
+
+            if (User::count()==0 ){
+                User::create([
+                    'name'=>'abderrahman',
+                    'email'=>'bestiony12373@gmail.com',
+                    'password'=> Hash::make('12345678')
+                ]);
+            }
+            if(Admin::count()==0){
+                Admin::create([
+                    'name'=>'bachir',
+                    'email'=>'bachirove@gmail.com',
+                    'password'=> Hash::make('87654321')
+                ]);
+            }
 
             // --------- seeding categories -----------
         if (Category::count() == 0){

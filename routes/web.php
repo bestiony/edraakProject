@@ -71,6 +71,7 @@ Route::middleware('auth')->group(function(){
 
 // ------------- Admin area ------------
 
+require __DIR__.'/admin.php';
 
 
 
