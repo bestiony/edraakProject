@@ -128,23 +128,28 @@ class DatabaseSeeder extends Seeder
             'image_url'=>'https://m.media-amazon.com/images/I/61H3RcZUPaL._AC_UY550_.jpg'
         ]);}
         // -------------- seeding products ---------------
-        // if(Product::count()==0){
+        if(Product::count()==0){
         // $faker = Faker::create();
-        // for($i =1; $i <= 60; $i++){
-        //     $category = rand(1,3);
-        //     $product = [
-        //         'id'=>$i,
-        //         'name'=>$faker->name(),
-        //         'description' => $faker->paragraph(5),
-        //         'price'=> rand(20,1000),
-        //         'size' => rand(1,5),
-        //         'image_id'=> $category,
-        //         'return_policy_id'=> ReturnPolicy::first()->id,
-        //         'category_id' => $category
-        //     ];
-        //     Product::create($product);
-        // }
-        // }
+        $productsNames = ['something', 'somrthingelse', 'WOW','Amasing'];
+        $descriptions = ['        Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, soluta obcaecati magni non odio mollitia minus, blanditiis iste illo excepturi ipsum, deserunt magnam quibusdam autem reprehenderit. Aliquam, doloremque. Accusamus, dignissimos?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum iusto accusamus, quam deleniti aut cumque, reprehenderit odio quibusdam earum numquam itaque quisquam labore cupiditate ullam hic doloribus autem nisi non?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum iusto accusamus, quam deleniti aut cumque, reprehenderit odio quibusdam earum numquam itaque quisquam labore cupiditate ullam hic doloribus autem nisi non?
+        '];
+        for($i =1; $i <= 60; $i++){
+            $category = rand(1,3);
+            $product = [
+                'id'=>$i,
+                'name'=>$productsNames[rand(0,2)],
+                'description' => $descriptions[rand(0,2)],
+                'price'=> rand(20,1000),
+                'size' => rand(1,5),
+                'image_id'=> $category,
+                'return_policy_id'=> ReturnPolicy::first()->id,
+                'category_id' => $category
+            ];
+            Product::create($product);
+        }
+        }
 
         if(ProductHasSubcategory::count()==0){
             ProductHasSubcategory::create([
