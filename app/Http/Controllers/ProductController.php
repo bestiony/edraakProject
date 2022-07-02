@@ -83,4 +83,8 @@ class ProductController extends Controller
     {
         //
     }
+
+    public function adminIndex(){
+        return view('admin.products.index',['products'=>Product::latest()->paginate('12')]);
+    }
 }

@@ -12,11 +12,11 @@ class Order extends Model
     use HasFactory;
 
     static public $ORDER_STATUSES = [
-        0 => 'Canceled',
         1 => 'Processing',
         2 => 'Shipped',
         3 => 'Delivered',
-        4 => 'Complete'
+        4 => 'Complete',
+        5 => 'Canceled',
     ];
 
     protected $fillable = ['user_id','address_id','status','total'];

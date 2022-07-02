@@ -18,10 +18,21 @@ create customer journey
         DONE:::redirect to order info page
         DONE:::follow order status or cancel if not processed yet
 
-create authorization for logged in users
+DONE:::create authorization for logged in users
 create Admin journey
-    Admin login from seperate page
-    
+    DONE:::Admin login from seperate page
+    DONE:::Admin sees users orders list
+    DONE:::Admin sess single order details page
+    DONE:::Admin updates order status from dropdown
+
+    Admin adds products
+    Admin edits products categories and subcategories
+    admin adds category
+    admin edits category
+    admin adds subcategory
+    admin edits subcategory
+    admin can ban users
+
 create templates
     landing page
     products page / search results

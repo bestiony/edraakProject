@@ -146,9 +146,17 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Order $order)
     {
-        //
+        $field = $request->validate([
+            'status'=>'required'
+        ]);
+        $status = intval($field['status']);
+        if ($status >count(Order::$ORDER_STATUSES) || $status <0){
+            return back()->with('error','status update failed!');
+        }
+        $order->update($field);
+        return back()->with('message','status update successful');
     }
 
     /**
@@ -160,5 +168,24 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function adminIndex(){
+        return view('admin.orders.index',[
+            'orders'=> Order::all()->last()->paginate(5),
+            'statuses' => Order::$ORDER_STATUSES
+        ]);
+    }
+
+    public function adminShow(Order $order){
+
+        $products = $order->products;
+        return view('admin.orders.show',[
+            'order'=>$order,
+            'products'=>$products,
+            'statuses' => Order::$ORDER_STATUSES,
+            'status' => Order::$ORDER_STATUSES[$order->status]
+        ]);
     }
 }

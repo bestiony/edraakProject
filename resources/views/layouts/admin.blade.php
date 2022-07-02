@@ -18,8 +18,8 @@
     <div class="container w-screen flex">
         <div class="flex flex-col w-1/5 border-2 border-red-400 border-solid">
             <ul>
-                <a href=""><li>orders</li></a>
-                <a href=""><li>products</li></a>
+                <a href="{{route('admin.orders')}}"><li>orders</li></a>
+                <a href="{{route('admin.products')}}"><li>products</li></a>
                 <a href=""><li>users</li></a>
                 <a href=""><li>categories</li></a>
                 <a href=""><li>subcategories</li></a>
