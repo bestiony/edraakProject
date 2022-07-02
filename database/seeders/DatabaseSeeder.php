@@ -38,7 +38,8 @@ class DatabaseSeeder extends Seeder
 
             if (User::count()==0 ){
                 User::create([
-                    'name'=>'abderrahman',
+                    'first_name'=>'abderrahman',
+                    'last_name'=>'fodili',
                     'email'=>'bestiony12373@gmail.com',
                     'password'=> Hash::make('12345678')
                 ]);
