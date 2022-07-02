@@ -17,6 +17,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\Models\ProductHasSubcategory;
 use App\Models\CategoryHasSubcategory;
+use Faker\Provider\Lorem;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
@@ -110,7 +111,13 @@ class DatabaseSeeder extends Seeder
         }
             // ------------   --------------
         if(ReturnPolicy::count() == 0){
-        ReturnPolicy::factory(10)->create();
+            for($i = 0; $i <10; $i++){
+
+                ReturnPolicy::create([
+                    'id'=> $i+1,
+                    'description' =>        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum iusto accusamus, quam deleniti aut cumque, reprehenderit odio quibusdam earum numquam itaque quisquam labore cupiditate ullam hic doloribus autem nisi non?'
+                ]);
+            }
     }
 
 
@@ -131,10 +138,11 @@ class DatabaseSeeder extends Seeder
         if(Product::count()==0){
         // $faker = Faker::create();
         $productsNames = ['something', 'somrthingelse', 'WOW','Amasing'];
-        $descriptions = ['        Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, soluta obcaecati magni non odio mollitia minus, blanditiis iste illo excepturi ipsum, deserunt magnam quibusdam autem reprehenderit. Aliquam, doloremque. Accusamus, dignissimos?
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum iusto accusamus, quam deleniti aut cumque, reprehenderit odio quibusdam earum numquam itaque quisquam labore cupiditate ullam hic doloribus autem nisi non?
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum iusto accusamus, quam deleniti aut cumque, reprehenderit odio quibusdam earum numquam itaque quisquam labore cupiditate ullam hic doloribus autem nisi non?
-        '];
+        $descriptions = [
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum iusto accusamus, quam deleniti aut cumque, reprehenderit odio quibusdam earum numquam itaque quisquam labore cupiditate ullam hic doloribus autem nisi non?',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum iusto accusamus, quam deleniti aut cumque, reprehenderit odio quibusdam earum numquam itaque quisquam labore cupiditate ullam hic doloribus autem nisi non?',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum iusto accusamus, quam deleniti aut cumque, reprehenderit odio quibusdam earum numquam itaque quisquam labore cupiditate ullam hic doloribus autem nisi non?'
+    ];
         for($i =1; $i <= 60; $i++){
             $category = rand(1,3);
             $product = [
@@ -184,7 +192,8 @@ class DatabaseSeeder extends Seeder
                 'id'=>1,
                 'user_id'=>1,
                 'status'=>1,
-                'address_id'=> 1
+                'address_id'=> 1,
+                'total' => 111
             ]);
         }
 
