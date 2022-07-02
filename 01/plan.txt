@@ -15,10 +15,13 @@ create customer journey
     DONE:::proceed to check out
         DONE:::add delivery and payment information
         DONE:::confirm order
-        redirect to order info page
-        follow order status or cancel if not processed yet
+        DONE:::redirect to order info page
+        DONE:::follow order status or cancel if not processed yet
 
-
+create authorization for logged in users
+create Admin journey
+    Admin login from seperate page
+    
 create templates
     landing page
     products page / search results

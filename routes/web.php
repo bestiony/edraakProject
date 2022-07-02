@@ -32,31 +32,46 @@ require __DIR__.'/auth.php';
 Route::get('/products',[ProductController::class,'index'])->name('products');
 
 // check product page
-Route::get('/product/{product}',[ProductController::class,'show']);
-
-// add to cart order
-Route::post('add-to-cart/{product}',[CartController::class,'store'])->name('add-to-cart');
-
-// see cart page
-Route::get('cart',[CartController::class,'show'])->name('cart');
-
-// modify quantity
-Route::post('modify-cart/{product}',[CartController::class,'edit'])->name('modify-cart');
+Route::get('/product/{product}',[ProductController::class,'show'])->name('single-product');
 
 
-// remove products from cart
-Route::post('delete-from-cart/{product}',[CartController::class,'delete'])->name('delete-from-cart');
 
-// show  check out page
-// add delivery and payment information
-Route::get('checkout',[CartController::class,'checkout'])->name('checkout');
+Route::middleware('auth')->group(function(){
+    // add to cart order
+    Route::post('add-to-cart/{product}',[CartController::class,'store'])->name('add-to-cart');
 
-// confirm order (create)
-Route::post('confirm-order',[CartController::class,'confirmOrder'])->name('confirm-order');
+    // see cart page
+    Route::get('cart',[CartController::class,'show'])->name('cart');
+
+    // modify quantity
+    Route::post('modify-cart/{product}',[CartController::class,'edit'])->name('modify-cart')->middleware('auth');
 
 
-// show order info page
-Route::get('orders',[OrderController::class,'index'])->name('orders');
+    // remove products from cart
+    Route::post('delete-from-cart/{product}',[CartController::class,'delete'])->name('delete-from-cart');
+
+    // show  check out page
+    // add delivery and payment information
+    Route::get('checkout',[OrderController::class,'create'])->name('checkout');
+
+    // confirm order (create)
+    Route::post('confirm-order',[OrderController::class,'store'])->name('confirm-order');
+
+
+    // show orders info page
+    Route::get('orders',[OrderController::class,'index'])->name('orders');
+
+    // show single order info page
+
+    Route::get('orders/{order}',[OrderController::class,'show'])->name('single-order');
+
+
+});
+
+
+// ------------- Admin area ------------
+
+
 
 
 

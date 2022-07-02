@@ -19,32 +19,43 @@ class OrderController extends Controller
     public function index()
     {
 
-        $user =User::find( Auth::user()->id);
+        $user = Auth::user();
+        // dd($user->orders);
+        return view('orders.index',[
+            'orders'=>$user->orders,
+            'statuses' => Order::$ORDER_STATUSES
+        ]);
 
-        $orders = $user->orders()->get();
 
-        $ordersIds = $orders->map(function($o){
-            return $o['id'];
-        })->toArray();
+        //--------- OLD METHODS ----------
+        // kep tjust in case Collections became a problem
 
-        // dd($ordersIds);
-        $ordersProducts = [];
+        // User::find( Auth::user()->id);
 
-        $products = [] ;
+        // $orders = $user->orders()->get();
 
-        foreach ($ordersIds as $id){
-            $orderDetails = OrderHasProduct::where('order_id',$id)->get();
-            foreach($orderDetails as $detail){
-                $ordersProducts[$id][]=$detail['product_id'];
-                $products[] = $detail['product_id'];
-            }
-        }
+        // $ordersIds = $orders->map(function($o){
+        //     return $o['id'];
+        // })->toArray();
 
-        $cleanList = array_unique($products);
+        // // dd($ordersIds);
+        // $ordersProducts = [];
 
-        $productsList = Product::whereIn('id',$cleanList)->get();
+        // $products = [] ;
 
-        dd($productsList);
+        // foreach ($ordersIds as $id){
+        //     $orderDetails = OrderHasProduct::where('order_id',$id)->get();
+        //     foreach($orderDetails as $detail){
+        //         $ordersProducts[$id][]=$detail['product_id'];
+        //         $products[] = $detail['product_id'];
+        //     }
+        // }
+
+        // $cleanList = array_unique($products);
+
+        // $productsList = Product::whereIn('id',$cleanList)->get();
+
+        // dd($ordersProducts);
 
     }
 
@@ -55,7 +66,11 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        $cart = session()->get('cart');
+        if (!$cart){
+            return redirect()->route('products')->with('message','nothing to checkout, cart empty');
+        }
+        return view('orders.create');
     }
 
     /**
@@ -66,7 +81,32 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $cart = session()->get('cart');
+        $total = 0;
+        foreach ( $cart as $item){
+            $total += $item['total'];
+        }
+
+        $address = new AdressController;
+        $addressId =$address->create($request);
+        $order = Order::create([
+            'user_id'=>auth()->id(),
+            'address_id'=>$addressId,
+            'status'=>'1',
+            'total'=> $total
+        ]);
+
+        foreach($cart as $item){
+            $orderProduct = [
+                'order_id'=>$order->id,
+                'product_id'=>$item['product']->id,
+                'quantity'=>$item['quantity']
+            ];
+            OrderHasProduct::create($orderProduct);
+        }
+        session()->forget('cart');
+        return redirect()->route('single-order', ['order'=>$order->id])->with('message','Order created successfully!');
     }
 
     /**
@@ -75,9 +115,17 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Order $order)
     {
-        //
+        if ( $order->user_id != auth()->id()){
+            abort(403);
+        }
+        $products = $order->products;
+        return view('orders.show',[
+            'order'=>$order,
+            'products'=>$products,
+            'status' => Order::$ORDER_STATUSES[$order->status]
+        ]);
     }
 
     /**

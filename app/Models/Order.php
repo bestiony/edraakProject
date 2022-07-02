@@ -11,7 +11,15 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id','address_id','status'];
+    static public $ORDER_STATUSES = [
+        0 => 'Canceled',
+        1 => 'Processing',
+        2 => 'Shipped',
+        3 => 'Delivered',
+        4 => 'Complete'
+    ];
+
+    protected $fillable = ['user_id','address_id','status','total'];
 
     public function user(){
         return $this->belongsTo(User::class,'user_id');
@@ -23,6 +31,10 @@ class Order extends Model
 
     public function get_product_quantity($Productid){
         return $this->products->where('id',$Productid)->first()->pivot->quantity;
+    }
+
+    public function address(){
+        return $this->hasOne(Address::class,'id');
     }
 
 
