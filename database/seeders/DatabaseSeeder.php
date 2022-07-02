@@ -10,7 +10,7 @@ use App\Models\Address;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
-use Faker\Factory as Faker;
+// use Faker\Factory as Faker;
 use App\Models\ReturnPolicy;
 use App\Models\OrderHasProduct;
 use Illuminate\Database\Seeder;
@@ -128,23 +128,23 @@ class DatabaseSeeder extends Seeder
             'image_url'=>'https://m.media-amazon.com/images/I/61H3RcZUPaL._AC_UY550_.jpg'
         ]);}
         // -------------- seeding products ---------------
-        if(Product::count()==0){
-        $faker = Faker::create();
-        for($i =1; $i <= 60; $i++){
-            $category = rand(1,3);
-            $product = [
-                'id'=>$i,
-                'name'=>$faker->name(),
-                'description' => $faker->paragraph(5),
-                'price'=> rand(20,1000),
-                'size' => rand(1,5),
-                'image_id'=> $category,
-                'return_policy_id'=> ReturnPolicy::first()->id,
-                'category_id' => $category
-            ];
-            Product::create($product);
-        }
-        }
+        // if(Product::count()==0){
+        // $faker = Faker::create();
+        // for($i =1; $i <= 60; $i++){
+        //     $category = rand(1,3);
+        //     $product = [
+        //         'id'=>$i,
+        //         'name'=>$faker->name(),
+        //         'description' => $faker->paragraph(5),
+        //         'price'=> rand(20,1000),
+        //         'size' => rand(1,5),
+        //         'image_id'=> $category,
+        //         'return_policy_id'=> ReturnPolicy::first()->id,
+        //         'category_id' => $category
+        //     ];
+        //     Product::create($product);
+        // }
+        // }
 
         if(ProductHasSubcategory::count()==0){
             ProductHasSubcategory::create([
