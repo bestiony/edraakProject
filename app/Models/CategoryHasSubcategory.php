@@ -10,4 +10,8 @@ class CategoryHasSubcategory extends Model
     use HasFactory;
     public $timestamps = false;
 
+    protected $fillable = ['category_id','subcategory_id'];
+
+
+
 }

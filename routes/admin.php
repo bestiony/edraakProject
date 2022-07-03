@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -45,5 +46,17 @@ Route::put('products/{product}/update',[ProductController::class,'update'])->nam
 
 Route::delete('products/{product}/destroy',[ProductController::class,'destroy'])->name('admin.destroy-product');
 
+
+
+        // --------admin <> categories ---------
+
+Route::get('categories',[CategoryController::class,'index'])->name('admin.categories');
+// Route::get('categories/create',[CategoryController::class,'create'])->name('admin.create-category');
+
+Route::post('categories/store',[CategoryController::class,'store'])->name('admin.store-category');
+Route::get('categories/{category}',[CategoryController::class,'show'])->name('admin.show-category');
+Route::get('categories/{category}/edit',[CategoryController::class,'edit'])->name('admin.edit-category');
+Route::put('categories/{category}/update',[CategoryController::class,'update'])->name('admin.update-category');
+Route::delete('categories/{category}/destroy',[CategoryController::class,'destroy'])->name('admin.destroy-category');
 
 });
