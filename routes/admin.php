@@ -31,4 +31,19 @@ Route::put('orders/{order}/update',[OrderController::class,'update'])->name('adm
         // --------admin <> products ---------
 
 Route::get('products',[ProductController::class,'adminIndex'])->name('admin.products');
+
+Route::get('products/create',[ProductController::class,'create'])->name('admin.create-product');
+
+
+Route::post('products/store',[ProductController::class,'store'])->name('admin.store-product');
+
+Route::get('products/{product}',[ProductController::class,'adminShow'])->name('admin.show');
+
+Route::get('products/{product}/edit',[ProductController::class,'edit'])->name('admin.edit-product');
+
+Route::put('products/{product}/update',[ProductController::class,'update'])->name('admin.update-product');
+
+Route::delete('products/{product}/destroy',[ProductController::class,'destroy'])->name('admin.destroy-product');
+
+
 });

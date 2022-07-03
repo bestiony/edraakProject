@@ -9,5 +9,5 @@ class ProductHasSubcategory extends Model
 {
     use HasFactory;
     public $timestamps = false;
-
+    protected $fillable =['product_id','subcategory_id'];
 }

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('product_has_subcategories', function (Blueprint $table) {
-            $table->foreignId('product_id')->constrained();
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->foreignId('subcategory_id')->constrained();
 
             // $table->integer('product_id')->unsigned();

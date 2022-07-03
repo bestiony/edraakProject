@@ -111,11 +111,17 @@ class DatabaseSeeder extends Seeder
         }
             // ------------   --------------
         if(ReturnPolicy::count() == 0){
-            for($i = 0; $i <10; $i++){
+            $policies =  [
+                'Eligible for refund and exchange',
+                'Exchange only',
+                'Partial refunds are granted',
+                'Exempt good'
+            ];
+            foreach($policies as $i => $policy){
 
                 ReturnPolicy::create([
                     'id'=> $i+1,
-                    'description' =>        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum iusto accusamus, quam deleniti aut cumque, reprehenderit odio quibusdam earum numquam itaque quisquam labore cupiditate ullam hic doloribus autem nisi non?'
+                    'description' =>  $policy
                 ]);
             }
     }
@@ -152,7 +158,7 @@ class DatabaseSeeder extends Seeder
                 'price'=> rand(20,1000),
                 'size' => rand(1,5),
                 'image_id'=> $category,
-                'return_policy_id'=> ReturnPolicy::first()->id,
+                'return_policy_id'=> rand(1,4),
                 'category_id' => $category
             ];
             Product::create($product);
@@ -160,18 +166,15 @@ class DatabaseSeeder extends Seeder
         }
 
         if(ProductHasSubcategory::count()==0){
-            ProductHasSubcategory::create([
-                'product_id'=>1,
-                'subcategory_id'=>4
-            ]);
-            ProductHasSubcategory::create([
-                'product_id'=>1,
-                'subcategory_id'=>2
-            ]);
-            ProductHasSubcategory::create([
-                'product_id'=>1,
-                'subcategory_id'=>1
-            ]);
+            for($i = 1; $i<=60;$i++){
+                $pair =[
+                    'product_id'=>  $i,
+                    'subcategory_id'=> rand(1,6)
+                ];
+            ProductHasSubcategory::create($pair);
+            }
+
+
         }
 
         if(Address::count()==0){

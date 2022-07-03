@@ -25,8 +25,8 @@ create Admin journey
     DONE:::Admin sess single order details page
     DONE:::Admin updates order status from dropdown
 
-    Admin adds products
-    Admin edits products categories and subcategories
+    DONE:::Admin adds products
+    DONE:::Admin edits products categories and subcategories
     admin adds category
     admin edits category
     admin adds subcategory
@@ -53,7 +53,12 @@ DONE:::create categories view
 
 
 local env
-
+DB_CONNECTION=mysql
+DB_HOST=localhost
+DB_PORT=3306
+DB_DATABASE=edproject
+DB_USERNAME=root
+DB_PASSWORD=
 
 
 
