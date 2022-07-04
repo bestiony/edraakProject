@@ -11,11 +11,13 @@ class Subcategory extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
+
     public function categories(){
         return $this->belongsToMany(Category::class,'category_has_subcategories');
     }
 
     public function products(){
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class,'product_has_subcategories');
     }
 }

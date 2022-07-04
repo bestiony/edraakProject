@@ -184,4 +184,21 @@ class ProductController extends Controller
     public function adminIndex(){
         return view('admin.products.index',['products'=>Product::latest()->paginate('12')]);
     }
+
+    public function delete_product_subcategory_link(Subcategory $subcategory, Product $product){
+        if($product->subcategories->count()<2){
+            return back()->with('error','Unable to remove product from subcategory '
+            .$subcategory->name.' this product needs to have at least one subcategory.
+            add it to another subcategory then try again!');
+        }
+        ProductHasSubcategory::
+            where('product_id',$product->id)->
+            where('subcategory_id',$subcategory->id)->
+            delete();
+        return redirect(route('admin.show-subcategory',
+            ['subcategory'=>$subcategory->id]))->
+            with('message','product removed from category successfully!');
+    }
+
+
 }

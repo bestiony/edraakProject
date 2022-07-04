@@ -27,8 +27,8 @@ create Admin journey
 
     DONE:::Admin adds products
     DONE:::Admin edits products categories and subcategories
-    admin adds category
-    admin edits category
+    DONE:::admin adds category
+    DONE:::admin edits category
     admin adds subcategory
     admin edits subcategory
     admin can ban users

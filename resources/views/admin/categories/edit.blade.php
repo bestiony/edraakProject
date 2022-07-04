@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 @section('content')
-
+{{-- @php
+    dd($subcategories->toArray());
+@endphp --}}
 <div class="container mx-auto flex  justify-center  mb-10">
     <form method="POST" action="{{route('admin.update-category',['category'=>$category->id])}} "
     class=" p-3 rounded items-start  border-solid border
@@ -17,6 +19,7 @@
         @error('name')
             <p class="text-red-400 text-sm">{{$message}} </p>
         @enderror
+
         </div>
         <div class="w-1/2">
 
@@ -25,17 +28,21 @@
 
                 @foreach ($subcategories as $subcategory)
                 <div class="flex p-3 ">
-                <label class="mr-3" for="{{$id =  $subcategory->id}} ">
+                <label class="mr-3" for="{{$subcategory->id}} ">
                     {{$subcategory->name}}
                 </label>
 
-                <input type="checkbox" name="subcategories[]"
-                value="{{$id}}" id="{{$id}}" {{
-                    $category->subcategories->has($id)? 'checked':''
-                }}
+                <input
+                    type="checkbox"
+                    name="subcategories[]"
+                    value="{{$subcategory->id}}"
+                    id="{{$subcategory->id}}"
+                    {{$category->subcategories->contains($subcategory)? 'checked':''}}
                 >
                 </div>
                 @endforeach
+
+
         @error('subcategories')
             <p class="text-red-400 text-sm">{{$message}} </p>
         @enderror

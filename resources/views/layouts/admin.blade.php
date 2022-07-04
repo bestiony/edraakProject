@@ -22,7 +22,7 @@
                 <a href="{{route('admin.products')}}"><li>products</li></a>
                 <a href=""><li>users</li></a>
                 <a href="{{ route('admin.categories') }}"><li>categories</li></a>
-                <a href=""><li>subcategories</li></a>
+                <a href="{{ route('admin.subcategories') }}"><li>subcategories</li></a>
             </ul>
         </div>
         <div class="container  flex flex-col w-3/4 border-2 border-solid border-gray-300">

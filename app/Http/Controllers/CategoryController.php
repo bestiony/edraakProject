@@ -95,6 +95,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+        // dd($request['subcategories']);
         CategoryHasSubcategory::where('category_id',$category->id)->delete();
 
         $category_table = $request->validate([
@@ -112,7 +113,7 @@ class CategoryController extends Controller
             CategoryHasSubcategory::create($pair);
         }
 
-        return redirect(route('admin.show-category',['category'=>$category]))->with('message','category created successfully');
+        return redirect(route('admin.categories'))->with('message','category created successfully');
     }
 
     /**
@@ -124,9 +125,11 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         if(Product::where('category_id',$category->id)->count()>0){
+            // dd(Product::where('category_id',$category->id)->count()>0);
             return back()->with('error','Unable to delete category, some products still have this category');
         }
         CategoryHasSubcategory::where('category_id',$category->id)->delete();
-        return back()->with('message','category deleted successfully');
+        Category::find($category->id)->delete();
+        return redirect(route('admin.categories'))->with('message','category deleted successfully');
     }
 }
