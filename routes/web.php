@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function(){
 
 
     // remove products from cart
-    Route::post('delete-from-cart/{product}',[CartController::class,'delete'])->name('delete-from-cart');
+    Route::delete('delete-from-cart/{product}',[CartController::class,'delete'])->name('delete-from-cart');
 
     // show  check out page
     // add delivery and payment information

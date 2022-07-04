@@ -7,9 +7,9 @@ create customer journey
     DONE:::browse products
     DONE:::check product page
     DONE:::add to cart
-        - redirect to log in/ register
-            get authenticated
-            back to product page
+        DONE:::- redirect to log in/ register
+            DONE:::get authenticated
+            DONE:::back to product page
     DONE:::see cart page
         DONE:::modify quantity or remove products from cart
     DONE:::proceed to check out
@@ -42,7 +42,7 @@ create templates
     orders list + statuses
     single order details
 
-create Admin auth ( middlwear || gate || sth else)
+DONE:::create Admin auth ( middlwear || gate || sth else)
 
 
 

@@ -51,6 +51,11 @@ class DatabaseSeeder extends Seeder
                     'email'=>'bachirove@gmail.com',
                     'password'=> Hash::make('87654321')
                 ]);
+                Admin::create([
+                    'name'=>'Bread',
+                    'email'=>'admin@edraakmc.com',
+                    'password'=> Hash::make('edraakMC_admin')
+                ]);
             }
 
             // --------- seeding categories -----------

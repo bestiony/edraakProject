@@ -27,6 +27,14 @@ $cart = session()->get('cart') ;
                 * modify<i class="fa fa-cart-plus" aria-hidden="true"></i>
             </button>
         </form>
+        <form method="POST" action="{{route('delete-from-cart',['product'=>$id])}}">
+            @csrf
+            @method('DELETE')
+            <button class="p-3 px-4 rounded bg-red-500 text-white hover:bg-red-300">
+                * Remove<i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+        </form>
+
     </div>
     @endforeach
 </div>

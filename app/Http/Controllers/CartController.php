@@ -66,7 +66,12 @@ class CartController extends Controller
     public function delete (Product $product){
         $cart = session()->get('cart');
         $id = $product->id;
-        unset($cart[$id]);
+        if($cart[$id]['quantity'] >1){
+            $cart[$id]['quantity']--;
+
+        }else {
+            unset($cart[$id]);
+        }
         session()->put('cart',$cart);
         return redirect()->back()->with('message',"product was removed from cart");
     }

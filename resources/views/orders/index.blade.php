@@ -33,7 +33,7 @@
 </div>
 </a>
 @endforeach
-
+    {{$orders->links()}}
 </div>
 
 @endsection

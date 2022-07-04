@@ -22,7 +22,7 @@ class OrderController extends Controller
         $user = Auth::user();
         // dd($user->orders);
         return view('orders.index',[
-            'orders'=>$user->orders,
+            'orders'=>$user->orders->paginate(1),
             'statuses' => Order::$ORDER_STATUSES
         ]);
 
