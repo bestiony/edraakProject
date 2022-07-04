@@ -20,7 +20,7 @@
             <ul>
                 <a href="{{route('admin.orders')}}"><li>orders</li></a>
                 <a href="{{route('admin.products')}}"><li>products</li></a>
-                <a href=""><li>users</li></a>
+                <a href="{{ route('admin.users') }}"><li>users</li></a>
                 <a href="{{ route('admin.categories') }}"><li>categories</li></a>
                 <a href="{{ route('admin.subcategories') }}"><li>subcategories</li></a>
             </ul>

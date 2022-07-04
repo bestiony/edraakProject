@@ -6,7 +6,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
-
+use App\Http\Controllers\UserController;
 
 Route::get('admin/login',[AdminController::class,'loginPage'])->middleware('notadmin');
 
@@ -74,5 +74,19 @@ Route::delete('categories/{category}/destroy',[CategoryController::class,'destro
     // Extra
     Route::put('subcategories/{subcategory}/{product}/destroy',
         [ProductController::class,'delete_product_subcategory_link'])->name('unlink-product-subcategory');
+
+
+
+
+    // --------admin <> users ---------
+
+    Route::get('users',[UserController::class,'index'])->name('admin.users');
+    // Route::get('users/create',[UserController::class,'create'])->name('admin.create-user');
+    // Route::post('users/store',[UserController::class,'store'])->name('admin.store-user');
+    Route::get('users/{user}',[UserController::class,'show'])->name('admin.show-user');
+    // Route::get('users/{user}/edit',[UserController::class,'edit'])->name('admin.edit-user');
+    // Route::put('users/{user}/update',[UserController::class,'update'])->name('admin.update-user');
+    // Route::delete('users/{user}/destroy',[UserController::class,'destroy'])->name('admin.destroy-user');
+    Route::put('users/status/{user}/{status_code}',[UserController::class,'updateStatus'])->name('updateStatus');
 
 });

@@ -23,6 +23,7 @@ class User extends Authenticatable
         'last_name',
         'email',
         'password',
+        'status'
     ];
 
     /**
@@ -45,6 +46,12 @@ class User extends Authenticatable
     ];
 
 
+    const STATUSES = [
+        0 => 'banned',
+        1 => 'active'
+    ];
+
+
     public function orders(){
         return $this->hasMany(Order::class,'user_id');
     }
@@ -57,5 +64,7 @@ class User extends Authenticatable
     public function addresses(){
         return $this->hasMany(Address::class);
     }
+
+
 
 }

@@ -29,9 +29,9 @@ create Admin journey
     DONE:::Admin edits products categories and subcategories
     DONE:::admin adds category
     DONE:::admin edits category
-    admin adds subcategory
-    admin edits subcategory
-    admin can ban users
+    DONE:::admin adds subcategory
+    DONE:::admin edits subcategory
+    DONE:::admin can ban users
 
 create templates
     landing page
