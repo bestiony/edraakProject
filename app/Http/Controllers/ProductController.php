@@ -65,9 +65,14 @@ class ProductController extends Controller
             'subcategories' =>'required',
             'image' =>'required',
         ]);
+        // -------- trying S3 -------
+        // $file = request()->file('image');
+        // $filename= $file->getClientOriginalName();
 
+        // $image_url = $request->file('image')->storeAs('images/',$filename,'s3');
+        // dd($image_url);
 
-        $image_url = $request->file('image')->store('images','public');
+        $image_url = $request->file('image')->store('images');
         $image = Image::create([
             'image_url'=> 'storage/'.$image_url
         ]);

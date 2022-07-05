@@ -17,7 +17,7 @@
      <nav class="shadow-md  relative bg-red-200 z-40 " >
         <div class="bg-white  shadow-md fixed top-0 left-0 right-0">
         <div class="container mx-auto bg-white  flex p-6 flex-wrap  ">
-            <img src="{{asset('storage/images/logo.png')}}" class="h-10 ">
+            <img src="https://i.ibb.co/XfHHPyM/logo.png" class="h-10 ">
 
             <!-- search -->
             <form action="" class="flex order-last  items-center rounded-md border w-full md:w-1/2 p-1
