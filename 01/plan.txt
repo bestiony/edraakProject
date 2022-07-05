@@ -79,3 +79,17 @@ DB_DATABASE=heroku_60347b0203471a5
 DB_USERNAME=b2aa89c867f426
 DB_PASSWORD=658f271c
 
+
+
+EMERGENCY PLAN
+
+add image_id to categories table
+add image_id to subcategories table
+add name to images table
+upload photos to a storage provider
+use their urls in the seeding process
+
+Modify add new product to accept urls instead of files
+
+
+
