@@ -11,7 +11,7 @@
         <li>*{{$subcategory->name}} </li>
         @endforeach
     </ul>
-    <div class="flex p-2 border-solid justify-center space-x-4">
+    <div class="flex p-2 border-solid justify-center space-x-4 mt-auto">
         <a href="{{ route('admin.edit-category', ['category'=>$category->id]) }}" class="px-3 py-1 rounded bg-green-500 text-white hover:bg-green-300">
             Edit
         </a>

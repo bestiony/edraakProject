@@ -21,7 +21,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('products.index',['products'=>Product::latest()->paginate('12')]);
+        $search = request('search')??'';
+        return view('products.index',[
+            'products'=>Product::latest()->filter()->paginate('12'),
+        ]);
     }
 
     /**
@@ -66,7 +69,7 @@ class ProductController extends Controller
 
         $image_url = $request->file('image')->store('images','public');
         $image = Image::create([
-            'image_url'=> $image_url
+            'image_url'=> 'storage/'.$image_url
         ]);
         $product_table['image_id'] = $image->id;
 

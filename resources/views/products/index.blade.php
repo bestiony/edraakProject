@@ -8,6 +8,6 @@
         <h1>nothing to see here </h1>
     @endforelse
 </div>
-{{$products->links()}}
+{{$products->withQueryString()->links()}}
 @endsection
 

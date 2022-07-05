@@ -39,7 +39,7 @@
 
     </form>
 </div>
-<div class="container space-x-3 flex flex-wrap mx-auto p-4 justify-center items-start">
+<div class="container space-x-3 flex flex-wrap mx-auto p-4 justify-center items-stretch">
 
     @forelse ($categories as $category)
     <x-category-card :category="$category" />

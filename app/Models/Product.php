@@ -50,4 +50,15 @@ class Product extends Model
 
         return $this->belongsToMany(Subcategory::class, 'product_has_subcategories');
     }
+
+
+    public function scopeFilter($query){
+        if (request('search')){
+            $query->where('name', 'like','%'.request('search').'%')
+                ->orWhere('description','like','%'.request('search').'%');
+        }
+        if (request('category')){
+            $query->where('category_id','like','%'.request('category').'%');
+        }
+    }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
 @php
-$cart = session()->get('cart');
+$cart = session()->get('cart')??[];
 // dd($cart);
 $id = $product->id;
 $quantity = $cart[$id]['quantity'] ?? 0;
