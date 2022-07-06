@@ -17,8 +17,9 @@
      <nav class="shadow-md  relative bg-red-200 z-40 " >
         <div class="bg-white  shadow-md fixed top-0 left-0 right-0">
         <div class="container mx-auto bg-white  flex p-6 flex-wrap  ">
-            <img src="https://i.ibb.co/XfHHPyM/logo.png" class="h-10 ">
-
+            <a href="{{route('home')}}">
+            <img src="{{asset('storage/images/logo.png')}}" class="h-10 ">
+            </a>
             <!-- search -->
             <form action="" class="flex order-last  items-center rounded-md border w-full md:w-1/2 p-1
             border-gray-400 mx-auto ">
@@ -30,9 +31,14 @@
 
             <!-- menu -->
             <ul class="flex p-1 md:order-last ml-auto items-center space-x-4 px-4">
-                <a href="" class="rounded hover:text-orange-500">Products</a>
-                <a href="" class="rounded hover:text-orange-500">Cart</a>
-                <a href="" class="rounded hover:text-orange-500">Profile</a>
+                <a href="{{route('products')}}" class="rounded hover:text-orange-500">Products</a>
+                <a href="{{route('cart')}}" class="rounded hover:text-orange-500">Cart</a>
+                @auth
+                <a href="{{route('orders')}}" class="rounded hover:text-orange-500">Profile</a>
+                @else
+                <a href="{{route('login')}}" class="rounded hover:text-orange-500">Login</a> 
+                <a href="{{route('register')}}" class="rounded hover:text-orange-500">register</a>
+                @endauth
             </ul>
         </div>
         </div>

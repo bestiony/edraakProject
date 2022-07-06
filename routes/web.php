@@ -1,9 +1,12 @@
 <?php
 
+use App\Models\Product;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
-use Illuminate\Support\Facades\Route;
+use App\Models\Category;
+use App\Models\Subcategory;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +20,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('home',[
+        'products'=>Product::inRandomOrder()->limit(3)->get(),
+        'random' =>Product::inRandomOrder()->first(),
+        'categories'=>Category::all(),
+        'subcategories'=>Subcategory::all()
+    ]);
 })->name('home');
 
 Route::get('/dashboard', function () {

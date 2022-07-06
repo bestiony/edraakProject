@@ -22,8 +22,11 @@ class ProductController extends Controller
     public function index()
     {
         $search = request('search')??'';
-        return view('products.index',[
+        return view('user.products.index',[
             'products'=>Product::latest()->filter()->paginate('12'),
+            'categories'=>Category::all(),
+            'subcategories'=>Subcategory::all(),
+            'sizes'=> Product::SIZES
         ]);
     }
 

@@ -35,6 +35,59 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+
+        // ---------- Images ----------
+            if(Image::count()==0){
+                $categoriesImages= [
+                    [
+                        'id'=>1,
+                        'image_url'=>'storage\images\men.jpg'
+                    ],
+                    [
+                        'id'=>2,
+                        'image_url'=>'storage\images\women.jpeg'
+                    ],
+                    [
+                        'id'=>3,
+                        'image_url'=>'storage\images\kids.png'
+                    ]
+                ];
+                foreach($categoriesImages as $entry){
+                    Image::create($entry);
+                }
+                $subcategoriesImages = [
+                    [
+                        'id'=>4,
+                        'image_url'=>'storage\images\jackets.jpg'
+                    ],
+                    [
+                        'id'=>5,
+                        'image_url'=>'storage\images\pants.jpg'
+                    ],
+                    [
+                        'id'=>6,
+                        'image_url'=>'storage\images\Sweaters&Shirts.jpg'
+                    ],
+                    [
+                        'id'=>7,
+                        'image_url'=>'storage\images\Shoes.jpg'
+                    ],
+                    [
+                        'id'=>8,
+                        'image_url'=>'storage\images\Bags.jpg'
+                    ],
+                    [
+                        'id'=>9,
+                        'image_url'=>'storage\images\Accessories.jpg'
+                    ]
+                ];
+                foreach($subcategoriesImages as $image){
+                    Image::create($image);
+                }
+            }
+
+
             // ------------- users ------------
 
             if (User::count()==0 ){
@@ -62,15 +115,18 @@ class DatabaseSeeder extends Seeder
         if (Category::count() == 0){
         Category::create([
             'id'=>1,
-            'name'=>'Men'
+            'name'=>'Men',
+            'image_id'=>1
         ]);
         Category::create([
             'id'=>2,
-            'name'=>'Woman'
+            'name'=>'Woman',
+            'image_id'=>2
         ]);
         Category::create([
             'id'=>3,
-            'name'=>'Kids'
+            'name'=>'Kids',
+            'image_id'=>3
         ]);
     }
 
@@ -78,27 +134,33 @@ class DatabaseSeeder extends Seeder
         if(Subcategory::count()==0){
         Subcategory::create([
             'id'=>1,
-            'name'=>'Jackets'
+            'name'=>'Jackets',
+            'image_id'=>4
         ]);
         Subcategory::create([
             'id'=>2,
-            'name'=>'Pants'
+            'name'=>'Pants',
+            'image_id'=>5
         ]);
         Subcategory::create([
             'id'=>3,
-            'name'=>'Sweaters & Shirts'
+            'name'=>'Sweaters & Shirts',
+            'image_id'=>6
         ]);
         Subcategory::create([
             'id'=>4,
-            'name'=>'Shoes'
+            'name'=>'Shoes',
+            'image_id'=>7
         ]);
         Subcategory::create([
             'id'=>5,
-            'name'=>'Bags'
+            'name'=>'Bags',
+            'image_id'=>8
         ]);
         Subcategory::create([
             'id'=>6,
-            'name'=>'Accessories'
+            'name'=>'Accessories',
+            'image_id'=>9
         ]);
     }
     if (CategoryHasSubcategory::count()==0){
@@ -134,15 +196,15 @@ class DatabaseSeeder extends Seeder
 
     if(Image::count()== 0){
         Image::create([
-            'id'=>1,
+            'id'=>4,
             'image_url'=>'https://m.media-amazon.com/images/I/51aiBTahmbL._AC_UX466_.jpg'
         ]);
         Image::create([
-            'id'=>2,
+            'id'=>5,
             'image_url'=>'https://m.media-amazon.com/images/I/61XE+thKb0L._AC_UY550_.jpg'
         ]);
         Image::create([
-            'id'=>3,
+            'id'=>6,
             'image_url'=>'https://m.media-amazon.com/images/I/61H3RcZUPaL._AC_UY550_.jpg'
         ]);}
         // -------------- seeding products ---------------
@@ -154,7 +216,7 @@ class DatabaseSeeder extends Seeder
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum iusto accusamus, quam deleniti aut cumque, reprehenderit odio quibusdam earum numquam itaque quisquam labore cupiditate ullam hic doloribus autem nisi non?',
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum iusto accusamus, quam deleniti aut cumque, reprehenderit odio quibusdam earum numquam itaque quisquam labore cupiditate ullam hic doloribus autem nisi non?'
     ];
-        for($i =1; $i <= 60; $i++){
+        for($i =1; $i <= 18; $i++){
             $category = rand(1,3);
             $product = [
                 'id'=>$i,
@@ -171,7 +233,7 @@ class DatabaseSeeder extends Seeder
         }
 
         if(ProductHasSubcategory::count()==0){
-            for($i = 1; $i<=60;$i++){
+            for($i = 1; $i<=18;$i++){
                 $pair =[
                     'product_id'=>  $i,
                     'subcategory_id'=> rand(1,6)
@@ -214,7 +276,7 @@ class DatabaseSeeder extends Seeder
             ]);
             OrderHasProduct::create([
                 'order_id'=>1,
-                'product_id'=>24,
+                'product_id'=>8,
                 'quantity'=>1,
             ]);
             OrderHasProduct::create([

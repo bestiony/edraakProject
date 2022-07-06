@@ -34,8 +34,8 @@ create Admin journey
     DONE:::admin can ban users
 
 create templates
-    landing page
-    products page / search results
+    DONE:::landing page
+    DONE:::products page / search results
     single product page
     cart page
     check out page
@@ -83,13 +83,13 @@ DB_PASSWORD=658f271c
 
 EMERGENCY PLAN
 
-add image_id to categories table
-add image_id to subcategories table
-add name to images table
-upload photos to a storage provider
-use their urls in the seeding process
+DONE:::add image_id to categories table
+DONE:::add image_id to subcategories table
+DONE:::add name to images table
+NOT NEEDED upload photos to a storage provider
+DONE:::use their urls in the seeding process
 
-Modify add new product to accept urls instead of files
+NOT NEEDED Modify add new product to accept urls instead of files
 
 
 

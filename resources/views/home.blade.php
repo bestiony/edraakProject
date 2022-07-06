@@ -6,30 +6,10 @@
         <div class="glide">
             <div class="glide__track border" data-glide-el="track">
                 <ul class="glide__slides">
+                    @foreach ($products as $product)
+                        <x-glide-card :product="$product"/>
+                    @endforeach
 
-                <li class="glide__slide">
-                    <div class="flex flex-col items-center md:flex-row  justify-center p-6">
-                        <!-- left -->
-                        <img src="./images/hoodie.jpg" class="md:w-1/4">
-                        <!-- right -->
-                        <div class="flex flex-col p-6 items-start md:w-1/3 text-center md:text-left">
-                            <h2 class="text-4xl font-bold md:w-1/2">
-                                The Best Hoodies in Town
-                            </h2>
-                            <hr class=" my-6 md:w-1/2">
-                            <p class="text-sm my-2">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Amet ullam aperiam architecto ex vero ducimus ipsa eligendi quisquam odit alias sunt,
-                                voluptates laudantium culpa corrupti, libero saepe esse enim. Exercitationem!</p>
-                            <a href="" class="bg-orange-500 hover:bg-orange-400 text-white py-2 px-4 rounded-lg self-end">
-                                <i class="fa fa-external-link" aria-hidden="true"></i>
-                                Shop
-                            </a>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="glide__slide">1</li>
-                <li class="glide__slide">2</li>
               </ul>
             </div>
             <div class="glide__arrows " data-glide-el="controls">
@@ -45,19 +25,11 @@
 </h1>
 <hr class="w-40 border-orange-500 mx-auto my-4">
 <section>
-    <div class=" container justify-center flex-col md:flex-row mx-auto flex space-x-4 p-6">
+    <div class=" container justify-center flex-col md:flex-row mx-auto md:flex-wrap flex space-x-4 p-6">
         <!-- category card -->
-        <div class="p-3 md:w-1/3 flex flex-col justify-center hover:z-0 items-center shadow-md
-            hover:scale-110 duration-500 hover:border-orange-500 border rounded">
-            <img src="./images/hoodie.jpg" class="w-3/4">
-            <h2 class="text-xl md:text-4xl text-center font-bold">
-                Men
-            </h2>
-        </div>
-
-
-
-
+        @foreach ($categories as $category)
+        <x-category-card :category="$category"/>
+        @endforeach
     </div>
 </section>
         <!-- Subcategories -->
@@ -68,13 +40,10 @@
 
 <section>
     <div class=" container justify-center flex-col md:flex-row mx-auto flex space-x-4 p-6">
-        <div class="p-3 md:w-1/4 flex flex-col justify-center items-center shadow-md
-            hover:-translate-y-4 duration-500 hover:border-orange-500 border rounded">
-            <img src="./images/hoodie.jpg" class="w-3/4">
-            <h2 class="text-xl md:text-4xl text-center font-bold">
-                Men
-            </h2>
-        </div>
+        @foreach ($subcategories as $subcategory)
+
+        <x-subcategory-card :subcategory="$subcategory"/>
+        @endforeach
 
     </div>
 </section>
@@ -86,13 +55,13 @@
 
         <div class="container mx-auto p-6 flex flex-col md:flex-row justify-center items-center">
             <!-- left -->
-            <img src="./images/men-deal.png" class="md:w-1/3">
+            <img src="{{asset($random->image->image_url)}}" class="md:w-1/3">
             <div class="flex flex-col items-center space-y-3">
                 <h1 class="text-5xl font-bold text-orange-500">%50 OFF</h1>
                 <h2 class="text-xl md:text-4xl text-center font-bold md:w-1/2">
                     Get the Best Deals this Aid
                 </h2>
-                <a href="" class="bg-orange-500 hover:bg-orange-400 text-white py-2 px-4 rounded-lg ">
+                <a href="{{route('single-product',['product'=>$random->id])}}" class="bg-orange-500 hover:bg-orange-400 text-white py-2 px-4 rounded-lg ">
                     <i class="fa fa-external-link" aria-hidden="true"></i>
                     Shop
                 </a>
@@ -117,15 +86,6 @@
     </div>
 </section>
 
-<div class="flex flex-col items-center">
-    <h1 class="font-bold text-3xl">Welcome to my store</h1>
-@auth
-        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
-    @else
-        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-    @endauth
 
-    <a href="{{route('products')}}" class="rounded bg-blue-500 text-white mx-auto">Browese products</a>
-</div>
+
 @endsection

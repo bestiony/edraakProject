@@ -22,4 +22,8 @@ class Category extends Model
     public function subcategories(){
         return $this->belongsToMany(Subcategory::class,'category_has_subcategories');
     }
+
+    public function image(){
+        return $this->belongsTo(Image::class,'image_id');
+    }
 }

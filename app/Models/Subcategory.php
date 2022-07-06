@@ -20,4 +20,7 @@ class Subcategory extends Model
     public function products(){
         return $this->belongsToMany(Product::class,'product_has_subcategories');
     }
+    public function image(){
+        return $this->belongsTo(Image::class,'image_id');
+    }
 }
