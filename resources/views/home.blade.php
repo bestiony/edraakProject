@@ -55,7 +55,7 @@
 
         <div class="container mx-auto p-6 flex flex-col md:flex-row justify-center items-center">
             <!-- left -->
-            <img src="{{asset($random->image->image_url)}}" class="md:w-1/3">
+            <img src="{{asset($random->image->image_url)}}" class="w-auto max-h-96">
             <div class="flex flex-col items-center space-y-3">
                 <h1 class="text-5xl font-bold text-orange-500">%50 OFF</h1>
                 <h2 class="text-xl md:text-4xl text-center font-bold md:w-1/2">
