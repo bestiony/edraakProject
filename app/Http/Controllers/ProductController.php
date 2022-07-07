@@ -102,7 +102,11 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         // dd($product->image->image_url);
-        return view('products.show',['product'=>$product]);
+        return view('user.products.show',[
+            'product'=>$product,
+            'related'=>Product::where('category_id',$product->category_id)->limit(4)->get(),
+            'sizes'=> Product::SIZES
+        ]);
     }
 
 

@@ -1,7 +1,7 @@
 @props(['product'])
 
 <li class="glide__slide">
-    <div class="flex flex-col items-center md:flex-row max-h-96 justify-center p-6">
+    <div class="flex flex-col items-center md:flex-row md:max-h-96 justify-center p-6">
         <!-- left -->
         <img src="{{asset($product->image->image_url)}}" class="max-h-72 md:max-w-1/4">
         <!-- right -->

@@ -41,7 +41,7 @@ class CartController extends Controller
     }
 
     public function show(){
-        return view('products.cart',['cart'=>session()->get('cart')]);
+        return view('user.products.cart',['cart'=>session()->get('cart')]);
     }
 
     public function edit(Product $product){
