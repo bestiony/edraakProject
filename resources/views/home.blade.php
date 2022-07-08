@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
  <!-- carousel -->
- <section class="bg-gray-900 mt-40 pb-10">
+ <section class="bg-gray-900 mt-40 py-10">
     <div class="container mx-auto p-6 mt-20 bg-white">
         <div class="glide">
             <div class="glide__track border" data-glide-el="track">
@@ -25,7 +25,7 @@
 </h1>
 <hr class="w-40 border-orange-500 mx-auto my-4">
 <section>
-    <div class=" container justify-center flex-col md:flex-row mx-auto md:flex-wrap flex space-x-4 p-6">
+    <div class=" container justify-center items-center flex-col md:flex-row mx-auto md:flex-wrap flex md:space-x-4 p-6">
         <!-- category card -->
         @foreach ($categories as $category)
         <x-category-card :category="$category"/>

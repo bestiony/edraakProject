@@ -12,7 +12,7 @@
 
     <title>Amouna</title>
 </head>
-<body>
+<body class="flex flex-col min-h-screen {{$bg_colour??""}}">
      <!-- nav bar -->
      <nav class="shadow-md  relative bg-red-200 z-40 " >
         <div class="bg-white  shadow-md fixed top-0 left-0 right-0">
@@ -36,7 +36,7 @@
                 @auth
                 <a href="{{route('orders')}}" class="rounded hover:text-orange-500">Profile</a>
                 @else
-                <a href="{{route('login')}}" class="rounded hover:text-orange-500">Login</a> 
+                <a href="{{route('login')}}" class="rounded hover:text-orange-500">Login</a>
                 <a href="{{route('register')}}" class="rounded hover:text-orange-500">register</a>
                 @endauth
             </ul>
@@ -47,7 +47,7 @@
 
     <!-- footer -->
 
-    <footer class="bg-gray-900">
+    <footer class="bg-gray-900 mt-auto">
         <div class="container flex-col md:flex-row mx-auto justify-between flex items-stretch p-16 ">
             <!-- left -->
             <img src="{{asset('storage/images/logo-white.png')}}" class="sm:1/2 md:w-1/5 self-center">

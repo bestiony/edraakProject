@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -70,7 +71,10 @@ class OrderController extends Controller
         if (!$cart){
             return redirect()->route('products')->with('message','nothing to checkout, cart empty');
         }
-        return view('orders.create');
+
+        return view('user.orders.create',[
+            'addresses'=>auth()->user()->addresses
+        ]);
     }
 
     /**
@@ -79,19 +83,30 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$oldaddress= false)
     {
+        $user = auth()->user();
 
         $cart = session()->get('cart');
         $total = 0;
         foreach ( $cart as $item){
             $total += $item['total'];
         }
-
         $address = new AdressController;
-        $addressId =$address->create($request);
+        if($oldaddress){
+            if(!Address::find($oldaddress)){
+                return back()->with('error','sorry address doesn\'exists!');
+            }
+            if($user->addresses->contains($oldaddress)){
+                $addressId = $oldaddress;
+            }else{
+                return back()->with('error','this address is not yours');
+            }
+        } else{
+            $addressId =$address->create($request);
+        }
         $order = Order::create([
-            'user_id'=>auth()->id(),
+            'user_id'=>$user->id,
             'address_id'=>$addressId,
             'status'=>'1',
             'total'=> $total

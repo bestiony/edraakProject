@@ -4,9 +4,9 @@
 
     <!-- product details -->
     <section class="pt-32">
-        <div class="container flex flex-col md:flex-row mx-auto p-6 justify-center ">
+        <div class="container h-screen flex flex-col md:flex-row mx-auto p-6 justify-center ">
             <!-- left -->
-            <img class="w-1/2 md:w-1/3 self-center md:self-start" src="{{asset($product->image->image_url)}}" alt="">
+            <img class="w-auto max-h-full  self-center md:self-start" src="{{asset($product->image->image_url)}}" alt="">
             <!-- right -->
             <div class="flex flex-col p-6 md:w-1/3 items-start space-y-4">
                 <h3 class="font-bold text-3xl">

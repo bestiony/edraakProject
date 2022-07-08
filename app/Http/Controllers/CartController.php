@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Order;
 use App\Models\OrderHasProduct;
 use App\Models\Product;
@@ -41,7 +42,11 @@ class CartController extends Controller
     }
 
     public function show(){
-        return view('user.products.cart',['cart'=>session()->get('cart')]);
+        
+        return view('user.products.cart',[
+            'cart'=>session()->get('cart'),
+            'bg_colour' => ' bg-gray-100 '
+        ]);
     }
 
     public function edit(Product $product){

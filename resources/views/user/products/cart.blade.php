@@ -28,7 +28,6 @@
                     $id = $product->id;
                     $quantity = $cart[$id]['quantity'] ?? 0;
                     $subtotal = $cart[$id]['total'];
-                    $total += $subtotal;
                     $items+= $cart[$id]['quantity'];
                 @endphp
                 <tr class="border-b h-36">
@@ -52,7 +51,7 @@
                             class="md:w-1/2 flex justify-end space-x-2">
                             @csrf
                             <input class="p-2 w-16 text-center  outline-orange-400 border-2 my-1
-                            rounded-sm shadow"
+                            rounded-sm shadow" {{$total == 0 ? " autofocus ":""}}
                             type="number" name="quantity" id="quantity " value="{{$quantity}}" min="0">
                             <button class="bg-blue-500 text-white  px-3 py-2 w-20 my-1
                             hover:bg-blue-300">Modify</button>
@@ -71,6 +70,12 @@
                         ${{$subtotal}}
                     </td>
                 </tr>
+                @php
+                // this was up there but moved here to help the auto focus
+                //  be triggered on the first modify input
+                $total += $subtotal;
+
+                @endphp
                 @endforeach
 
 
@@ -84,14 +89,14 @@
         <div class=" p-6 bg-white">
             <p class="text-xl py-2">Items : <span class="font-bold">{{$items}}</span></p>
             <p class="text-xl py-2 mb-2">Total : <span class="font-bold">${{$total}}</span></p>
-            <a href="" class="rounded bg-orange-500 py-2 px-4
+            <a href="{{route('checkout')}}" class="rounded bg-orange-500 py-2 px-4
              text-white hover:bg-orange-300">
              Proceed to Checkout</a>
         </div>
     </div>
 
     @else
-    <div class="flex flex-col items-center container bg-white mx-auto  p-4">
+    <div class="flex flex-col items-center container bg-white mx-auto mb-10 mt sm:-mt-10 p-4">
         <img src="{{asset('storage/images/empty-cart.png')}}" alt=""
         style="filter: invert(43%) sepia(98%) saturate(763%) hue-rotate(351deg) brightness(99%) contrast(97%);"
         class="w-2/3 lg:w-1/3"

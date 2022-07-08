@@ -63,7 +63,7 @@ Route::middleware('auth')->group(function(){
     Route::get('checkout',[OrderController::class,'create'])->name('checkout');
 
     // confirm order (create)
-    Route::post('confirm-order',[OrderController::class,'store'])->name('confirm-order');
+    Route::post('confirm-order/{oldaddress}',[OrderController::class,'store'])->name('confirm-order');
 
 
     // show orders info page

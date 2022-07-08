@@ -34,7 +34,7 @@ class Order extends Model
     }
 
     public function address(){
-        return $this->hasOne(Address::class,'id');
+        return $this->belongsTo(Address::class,'address_id');
     }
 
 
