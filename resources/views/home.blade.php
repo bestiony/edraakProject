@@ -89,3 +89,15 @@
 
 
 @endsection
+
+@section('js')
+<!-- glide js -->
+<script src="https://unpkg.com/@glidejs/glide@3.5.2/dist/glide.min.js"></script>
+<script>
+    new Glide('.glide',{
+        // autoplay: 2000,
+        // hoverpause: false,
+        // perView: 1
+    }).mount()
+</script>
+@endsection

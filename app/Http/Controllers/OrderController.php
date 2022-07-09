@@ -22,9 +22,11 @@ class OrderController extends Controller
 
         $user = Auth::user();
         // dd($user->orders);
-        return view('orders.index',[
+        return view('user.orders.index',[
+            'user'=>$user,
             'orders'=>$user->orders->paginate(1),
-            'statuses' => Order::$ORDER_STATUSES
+            'statuses' => Order::$ORDER_STATUSES,
+            'bg_colour' => ' bg-gray-100 '
         ]);
 
 
@@ -73,7 +75,8 @@ class OrderController extends Controller
         }
 
         return view('user.orders.create',[
-            'addresses'=>auth()->user()->addresses
+            'addresses'=>auth()->user()->addresses,
+            'bg_colour' => ' bg-gray-100 '
         ]);
     }
 
@@ -136,10 +139,11 @@ class OrderController extends Controller
             abort(403);
         }
         $products = $order->products;
-        return view('orders.show',[
+        return view('user.orders.show',[
             'order'=>$order,
             'products'=>$products,
-            'status' => Order::$ORDER_STATUSES[$order->status]
+            'status' => Order::$ORDER_STATUSES[$order->status],
+            'bg_colour'=>' bg-gray-100 '
         ]);
     }
 

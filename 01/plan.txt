@@ -36,9 +36,9 @@ create Admin journey
 create templates
     DONE:::landing page
     DONE:::products page / search results
-    single product page
-    cart page
-    check out page
+    DONE:::single product page
+    DONE:::cart page
+    DONE:::check out page
     orders list + statuses
     single order details
 
