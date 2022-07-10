@@ -39,8 +39,8 @@ create templates
     DONE:::single product page
     DONE:::cart page
     DONE:::check out page
-    orders list + statuses
-    single order details
+    DONE:::orders list + statuses
+    DONE:::single order details
 
 DONE:::create Admin auth ( middlwear || gate || sth else)
 

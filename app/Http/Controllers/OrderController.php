@@ -143,6 +143,7 @@ class OrderController extends Controller
             'order'=>$order,
             'products'=>$products,
             'status' => Order::$ORDER_STATUSES[$order->status],
+            'status_color' =>Order::$ORDER_STATUS_COLOR[$order->status] ,
             'bg_colour'=>' bg-gray-100 '
         ]);
     }

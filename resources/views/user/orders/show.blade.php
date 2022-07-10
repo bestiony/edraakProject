@@ -1,53 +1,86 @@
 @extends('layouts.main')
 @section('content')
-<section class="mt-40">
-    <div class="container mx-auto p-6 bg-white">
-
-<h1 class="w-1/3 text-center mx-auto font-bold text-4xl">Order Details : ID {{$order->id}}</h1>
-
-<div class="container mx-auto py-3 px-6  border-solid border-gray-500 ">
-    {{-- top --}}
-    <div class="flex mx-auto justify-around space-x-4 ">
-        <div class="border-solid border-gray-500 border-2 rounded p-3">
+@php
+    $items = 0;
+@endphp
+<section class="mt-40 p-6">
+    <div
+        class="container mx-auto py-6 flex flex-col md:flex-row space-y-4 md:space-y-0 flex-wrap md:justify-between">
+        <!-- top: status -->
+        <div class="bg-white mx-5 md:ml-0 p-6 flex items-center  md:w-96">
             <p>Status:</p>
-            <h3 class="text-2xl font-bold text-blue-400 rounded border-b-slate-400">{{$status}}</h3>
+            <h3 class="{{$status_color}} text-xl">{{$status}}</h3>
         </div>
-        <div>
-
-            <p class="p-3">
-                {{$order->address->address_line_1}}
+        <!-- middle left : addresss used -->
+        <div class="bg-white p-6 flex items-center mx-5 space-x-3 md:w-96">
+            <i class="fa fa-address-card-o" aria-hidden="true"></i>
+            <p>Address:</p>
+            @php
+                $address = $order->address;
+            @endphp
+                <p>
+                {{
+                $address->address_line_1.' '.
+                $address->address_line_2.' '.
+                $address->city.' '.
+                $address->state.' '.
+                $address->country.' '.
+                $address->postal_code
+                }}</p>
+        </div>
+        <!-- middle  right: order id and created date -->
+        <div class="bg-white p-6 flex mx-5 md:mr-0 flex-col justify-center  md:w-96">
+            <p>
+                Order id:
+                <span class="font-blod">{{$order->id}}</span>
             </p>
-            <p> Created at {{$order->created_at}}</p>
+            <p>
+                Created at:
+                <span>{{$order->created_at}} </span>
+            </p>
         </div>
     </div>
-    <div class="p-4 flex flex-col space-y-4">
+    <!-- bottom :items  -->
+    <div class=" mx-auto flex flex-col  md:w-2/3 bg-white p-6 mt-10">
+        <!-- item 1 -->
         @foreach ($order->products as $product)
-            <div class="flex space-x-2 p-2 rounded border-2 border-solid border-gray-200">
-                <img src="{{$product->image->image_url}}" alt="" class="w-32">
-                <div class="flex flex-col">
-                    <h4 class="text-xl">
-                        {{$product->name}}
-                    </h4>
-                    <p>
-                        {{$product->description}}
+
+        <div class="flex flex-wrap justify-around">
+            <img src="{{asset($product->image->image_url)}}" class="h-40 ">
+            <div class="flex flex-col p-6 w-4/6">
+                <p class="font-bold">{{$product->name}}</p>
+                <p class="text-ellipsis overflow-hidden h-12">
+                    {{$product->description}}
+                </p>
+                <div class="flex mt-auto">
+
+                    <p class="">
+                        ${{$price = $product->price}} X {{$quantity = $order->get_product_quantity($product->id)}}
                     </p>
-                    <p class="">${{$product->price}}  X   Quantity: {{$quantity = $order->get_product_quantity($product->id)}}</p>
-                    <p>Total: ${{$product->price * $quantity}}</p>
+                    <p class="ml-auto font-bold">
+                        subtotal: ${{$subtotal = $price*$quantity}}
+                    </p>
                 </div>
             </div>
+            <hr class=" w-full" />
+        </div>
+        @php
+            $items += $quantity;
+        @endphp
         @endforeach
-        <div class="flex justify-between  p-2 rounded border-4 border-solid border-black">
-            <div>
-                <p>Number of products in order : {{$order->products->count()}} </p>
-                <p>Number of items in order : </p>
-            </div>
-            <div>
-                <h4 class="font-bold text-xl">Total: ${{$order->total}}</h4>
-            </div>
+
+
+
+
+
+    </div>
+    <!-- bottom left : total  -->
+    <div class=" mx-auto flex flex-col items-end  md:w-2/3   mt-10">
+        <div class="bg-white p-6 w-56">
+            <p class="font-bold">items:{{$items}}</p>
+            <p class="font-bold">Total: ${{$order->total}}</p>
         </div>
     </div>
-</div>
-
-</div>
+    <!-- <div class="p-6 flex flex-col md:w-2/3 bg-white"></div> -->
 </section>
 @endsection

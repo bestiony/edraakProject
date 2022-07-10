@@ -18,6 +18,13 @@ class Order extends Model
         4 => 'Complete',
         5 => 'Canceled',
     ];
+    static public $ORDER_STATUS_COLOR = [
+        1 => ' text-blue-600 ',
+        2 => ' text-yellow-600 ',
+        3 => ' text-orange-600 ',
+        4 => ' text-green-600 ',
+        5 => ' text-red-600 ',
+    ];
 
     protected $fillable = ['user_id','address_id','status','total'];
 

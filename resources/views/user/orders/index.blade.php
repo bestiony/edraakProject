@@ -3,7 +3,7 @@
 {{-- Top --}}
 <section class="mt-40">
 
-<div class="container flex flex-col items-center lg:flex-row flex-wrap mx-auto ">
+<div class="container flex flex-col items-center md:items-start lg:flex-row flex-wrap mx-auto ">
     {{-- left --}}
     <div class="m-8 items-center pt-4 flex flex-col p-3 w-3/4 lg:w-1/4 rounded-l bg-white">
         <img
@@ -28,16 +28,12 @@
                         {{$address->id}}
                     </span>
                     {{
-
                     $address->address_line_1.' '.
                     $address->address_line_2.' '.
                     $address->city.' '.
                     $address->state.' '.
                     $address->country.' '.
                     $address->postal_code
-
-
-
                     }}
                 </p>
             @empty
