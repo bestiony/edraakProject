@@ -71,7 +71,7 @@ class OrderController extends Controller
     {
         $cart = session()->get('cart');
         if (!$cart){
-            return redirect()->route('products')->with('message','nothing to checkout, cart empty');
+            return redirect()->route('products')->with('error','nothing to checkout, cart empty');
         }
 
         return view('user.orders.create',[

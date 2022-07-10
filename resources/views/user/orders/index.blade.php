@@ -21,11 +21,15 @@
         <hr class="my-4 border-1 border-gray-200 w-full">
         {{-- address --}}
         <p class="text-l">Addresses</p>
+        @php
+        $count = 1;
+        @endphp
             @forelse ($user->addresses as $address)
-                <p class="rounded p-2 text-sm shadow-md">
+                <p class="rounded p-2 text-sm shadow-md w-full">
                     <span class="text-white bg-red-500 w-6 p-1 h-6 inline-block leading-3 text-center
                         rounded-full  text-l ">
-                        {{$address->id}}
+
+                        {{$count++}}
                     </span>
                     {{
                     $address->address_line_1.' '.

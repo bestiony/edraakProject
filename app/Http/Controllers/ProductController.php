@@ -92,7 +92,7 @@ class ProductController extends Controller
             ];
             ProductHasSubcategory::create($pair);
         }
-        return redirect(route('admin.show',['product'=>$product]));
+        return redirect(route('admin.show',['product'=>$product]))->with('message','Product created successfully');
     }
 
     /**
@@ -172,7 +172,7 @@ class ProductController extends Controller
         // $image_url = $request->file('image')->store('images','public');
         $image = $product->image;
         $image->update([
-            'image_url'=> 'storage/'.$s3
+            'image_url'=> $s3
         ]);
         $product_table['image_id'] = $image->id;
 
@@ -187,7 +187,7 @@ class ProductController extends Controller
             ];
             ProductHasSubcategory::create($pair);
         }
-        return redirect(route('admin.show',['product'=>$product]));
+        return redirect(route('admin.show',['product'=>$product]))->with('message','Product Updated successfully');
     }
 
     /**

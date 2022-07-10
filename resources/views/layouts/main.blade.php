@@ -9,10 +9,31 @@
     <link rel="stylesheet" href="https://unpkg.com/@glidejs/glide@3.5.2/dist/css/glide.core.min.css">
     <link rel="stylesheet" href="https://unpkg.com/@glidejs/glide@3.5.2/dist/css/glide.theme.min.css">
     <link rel="icon" type="image/x-icon" href="{{asset('storage/images/icon.png')}}">
+    <script src="//unpkg.com/alpinejs" defer></script>
 
     <title>Amouna</title>
 </head>
 <body class="flex flex-col min-h-screen {{$bg_colour??""}}">
+    {{-- flash message --}}
+    @if(session()->has('error'))
+    <div x-show="show" x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)"
+        class="fixed  p-1 bg-red-500 text-white top-1/3 left-1/2 w-96 -translate-x-1/2">
+        <div class="border p-2 w-full border-white rounded flex justify-between">
+            <p>Error: {{session('error')}}</p>
+            <button href="" @click="show = false">X</button>
+        </div>
+        </div>
+    @endif
+    @if(session()->has('message'))
+    <div x-show="show" x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)"
+        class="fixed  p-1 bg-green-500 text-white top-1/3 left-1/2 w-96 -translate-x-1/2">
+        <div class="border p-2 w-full border-white rounded flex justify-between">
+
+            <p>message: {{session('message')}}</p>
+            <button href="" @click="show = false">X</button>
+        </div>
+        </div>
+    @endif
      <!-- nav bar -->
      <nav class="shadow-md  relative bg-red-200 z-40 " >
         <div class="bg-white  shadow-md fixed top-0 left-0 right-0">

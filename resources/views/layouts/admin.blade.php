@@ -8,14 +8,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
 
     <title>Admin</title>
 </head>
 
 <body class="flex flex-col min-h-screen bg-gray-100">
+    {{-- flash message --}}
+    @if(session()->has('error'))
+    <div x-show="show" x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)"
+        class="fixed  p-1 bg-red-500 text-white top-1/3 left-1/2 w-96 -translate-x-1/2">
+        <div class="border p-2 w-full border-white rounded flex justify-between">
+            <p>Error: {{session('error')}}</p>
+            <button href="" @click="show = false">X</button>
+        </div>
+        </div>
+    @endif
+    @if(session()->has('message'))
+    <div x-show="show" x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)"
+        class="fixed  p-1 bg-green-500 text-white top-1/3 left-1/2 w-96 -translate-x-1/2">
+        <div class="border p-2 w-full border-white rounded flex justify-between">
+
+            <p>message: {{session('message')}}</p>
+            <button href="" @click="show = false">X</button>
+        </div>
+        </div>
+    @endif
     <section>
+
         <div class="container mx-auto p-6 flex">
-            <img src="{{asset('storage/images/logo.png')}}" alt="" class="h-8 w-auto">
+            <a href="{{route('home')}}"><img src="{{asset('storage/images/logo.png')}}" alt="" class="h-8 w-auto"></a>
         </div>
     </section>
     <section>
