@@ -3,7 +3,7 @@
 
 <div class="container flex items-center  mx-auto p-6 justify-evenly">
     <div class=" w-1/4 flex justify-end">
-        <img src="{{asset($product->image->image_url)}}" alt="">
+        <img src="{{asset( $product->image->image_url)}}" alt="">
     </div>
     <div class="flex flex-col text-center md:text-left w-1/3">
         <h1 class="text-3xl  font-bold">

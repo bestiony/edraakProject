@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\OrderHasProduct;
 use Illuminate\Validation\Rule;
 use App\Models\ProductHasSubcategory;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -69,15 +70,16 @@ class ProductController extends Controller
             'image' =>'required',
         ]);
         // -------- trying S3 -------
-        // $file = request()->file('image');
-        // $filename= $file->getClientOriginalName();
+        $file = request()->file('image');
+        $filename= $file->getClientOriginalName();
 
-        // $image_url = $request->file('image')->storeAs('images/',$filename,'s3');
-        // dd($image_url);
+        $file->storeAs('images/',$filename,'s3');
+        $s3=Storage::disk('s3')->url('images/'.$filename);
+        // dd($s3);
 
-        $image_url = $request->file('image')->store('images','public');
+        // $image_url = $request->file('image')->store('images','public');
         $image = Image::create([
-            'image_url'=> 'storage/'.$image_url
+            'image_url'=> $s3
         ]);
         $product_table['image_id'] = $image->id;
 
@@ -111,7 +113,12 @@ class ProductController extends Controller
 
 
     public function adminShow(Product $product){
-        return view ('admin.products.show',['product'=>$product]);
+        // $image = Storage::disk('s3')->url('images/'.$product->image->image_url) ;
+        // dd($image);
+        return view ('admin.products.show',[
+            'product'=>$product,
+            // 'image'=>$image
+        ]);
     }
 
     /**
@@ -156,12 +163,16 @@ class ProductController extends Controller
             'subcategories' =>'required',
             'image' =>'required',
         ]);
+        $file = request()->file('image');
+        $filename= $file->getClientOriginalName();
 
+        $file->storeAs('images/',$filename,'s3');
+        $s3=Storage::disk('s3')->url('images/'.$filename);
 
-        $image_url = $request->file('image')->store('images','public');
+        // $image_url = $request->file('image')->store('images','public');
         $image = $product->image;
         $image->update([
-            'image_url'=> $image_url
+            'image_url'=> 'storage/'.$s3
         ]);
         $product_table['image_id'] = $image->id;
 
