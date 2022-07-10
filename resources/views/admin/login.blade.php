@@ -10,10 +10,12 @@
 </head>
 <body>
 
-
+    <a href="{{route('home')}}" class="w-48 mt-10 block mx-auto">
+        <img class="w-48" src="{{asset('storage/images/logo.png')}}" alt="">
+    </a>
 
 <div class="container flex mx-auto p-10 justify-center  ">
-    <form method="POST" class="w-1/3 flex flex-col border-solid border-2" action="{{route('admin.login')}}">
+    <form method="POST" class="w-3/4 md:w-2/5 p-6 flex flex-col border-solid border-2" action="{{route('admin.login')}}">
         @csrf
         <h1 class="text-center text-3xl">Admin Login</h1>
         <label class="p-3 m-3 " for="email">Email</label>

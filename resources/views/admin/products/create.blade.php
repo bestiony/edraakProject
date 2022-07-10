@@ -2,14 +2,17 @@
 @section('content')
 
 <div class="container mx-auto flex  justify-center  mb-10">
-    <form method="POST" action="{{route('admin.store-product')}} " class="p-3 rounded items-start  border-solid border
-    border-red-300 md:w-1/3 space-y-3 flex flex-col "
+    <form method="POST" action="{{route('admin.store-product')}} "
+    class="p-3 rounded items-start  border-solid border
+    border-red-300  flex flex-col md:flex-row"
     enctype="multipart/form-data">
         @csrf
+        {{-- left --}}
+        <div class="flex-col flex space-y-3 w-1/2 p-3">
         <h1 class="font-bold text-2xl text-center">Add New Product</h1>
         <label for="name" class="text-xl w-max">Name</label>
         <input type="text" name="name" id="name"
-        class="rounded shadow-inner w-full p-2 my-2" required
+        class="rounded border w-full p-2 my-2" required
         value="{{old('name')}}">
         @error('name')
             <p class="text-red-400 text-sm">{{$message}} </p>
@@ -17,7 +20,7 @@
 
         <label for="description" class="text-xl w-max">Description</label>
         <textarea type="text" name="description" id="description"
-        class="resize-none rounded shadow-inner w-full p-2 my-2" required
+        class="resize-none rounded border w-full p-2 my-2" required
         value="{{old('description')}}">
 
         </textarea>
@@ -28,7 +31,7 @@
 
         <label for="price" class="text-xl w-max">Price</label>
         <input min="0" type="number" name="price" id="price"
-        class="rounded shadow-inner w-full p-2 my-2" required
+        class="rounded border w-full p-2 my-2" required
         value="{{old('price')}}">
         @error('price')
             <p class="text-red-400 text-sm">{{$message}} </p>
@@ -36,7 +39,7 @@
 
         <label for="size" class="text-xl w-max">Size</label>
         <select  name="size" id="size"
-        class="rounded shadow-inner w-full p-2 my-2" required
+        class="rounded border w-full p-2 my-2" required
         value="{{old('size')}}">
             @foreach ($sizes as $size)
                 <option value="{{$size}}">{{$size}}</option>
@@ -48,7 +51,7 @@
 
         <label for="category_id" class="text-xl w-max">Category</label>
         <select type="text" name="category_id" id="category_id"
-        class="rounded shadow-inner w-full p-2 my-2" required
+        class="rounded border w-full p-2 my-2" required
         value="{{old('category')}}">
             @foreach ($categories as $category)
                 <option value="{{$category->id}} ">{{$category->name}}</option>
@@ -57,8 +60,11 @@
         @error('category_id')
             <p class="text-red-400 text-sm">{{$message}} </p>
         @enderror
-
-        <label for="subcategories" class="text-xl w-max">SubCategory</label>
+        </div>
+        {{-- right --}}
+        <div class="flex flex-col space-y-3 w-1/2">
+            <div class="border p-1">
+        <label for="subcategories" class="text-xl w-max">SubCategories</label>
         <div class="flex flex-wrap items-start justify-start">
             @foreach ($subcategories as $subcategory)
             <div class="flex p-3 ">
@@ -71,7 +77,7 @@
             @endforeach
         </div>
         {{-- <select type="text" name="subcategories" id=""
-        class="rounded shadow-inner w-full p-2 my-2" required
+        class="rounded border w-full p-2 my-2" required
         value="{{old('sybcategory')}}">
             @foreach ($subcategories as $subcategory)
                 <option value="{{$subcategory->id}} ">{{$subcategory->name}}</option>
@@ -80,10 +86,10 @@
         @error('subcategories')
             <p class="text-red-400 text-sm">{{$message}} </p>
         @enderror
-
+    </div>
         <label for="image" class="text-xl w-max">Image</label>
         <input type="file" name="image" id="image"
-        class="rounded shadow-inner w-full p-2 my-2" required
+        class="rounded border w-full p-2 my-2" required
         value="{{old('image')}}">
         @error('image')
             <p class="text-red-400 text-sm">{{$message}} </p>
@@ -91,7 +97,7 @@
 
         <label for="return_policy_id" class="text-xl w-max">Return Policy</label>
         <select type="text" name="return_policy_id" id="return_policy_id"
-        class="rounded shadow-inner w-full p-2 my-2" required
+        class="rounded border w-full p-2 my-2" required
         value="{{old('return_policy_id')}}">
             @foreach ($return_policies as $policy)
                 <option value="{{$policy->id}} ">{{$policy->description}}</option>
@@ -100,9 +106,12 @@
         @error('return_policy_id')
             <p class="text-red-400 text-sm">{{$message}} </p>
         @enderror
-        <button class="roudned bg-green-400 px-3 py-1 text-white hover:bg-green-300">Add Product</button>
-        <a href="{{ route('admin.products')}} " class="rounded bg-red-500 px-3 py-1 text-white">Back</a>
+        <div class="flex justify-around">
 
+            <a href="{{ route('admin.products')}} " class="rounded bg-red-500 px-3 py-1 text-white">Back</a>
+            <button class="roudned bg-green-400 px-3 py-1 text-white hover:bg-green-300">Add Product</button>
+        </div>
+    </div>
     </form>
 </div>
 

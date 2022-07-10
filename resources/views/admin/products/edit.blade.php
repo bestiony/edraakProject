@@ -2,12 +2,15 @@
 @section('content')
 
 <div class="container mx-auto flex  justify-center  mb-10">
-    <form method="POST" action="{{route('admin.update-product',['product'=>$product])}} " class="p-3 rounded items-start  border-solid border
-    border-red-300 md:w-1/3 space-y-3 flex flex-col bg-gray-100 "
+    <form method="POST" action="{{route('admin.update-product',['product'=>$product])}} "
+        class="p-3 rounded items-start  border-solid border
+    border-red-300  flex flex-col md:flex-row bg-gray-50"
     enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <h1 class="font-bold text-2xl text-center">Add New Product</h1>
+        {{-- left --}}
+        <div class="flex-col flex space-y-3 w-1/2 p-3">
+        <h1 class="font-bold text-2xl text-center">Edit Product</h1>
         <label for="name" class="text-l w-max">Name</label>
         <input type="text" name="name" id="name"
         class="rounded shadow-inner w-full p-2 my-2" required

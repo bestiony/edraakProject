@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\CategoryHasSubcategory;
+use App\Models\Image;
 use App\Models\Product;
+use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Models\CategoryHasSubcategory;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -42,14 +44,32 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-
+        // validate fields
         $category_table = $request->validate([
             'name'=>['required',Rule::unique('categories','name')]
         ]);
+
         $subcategories = $request->validate([
             'subcategories'=>'required'
         ]);
+        $check_image = $request->validate([
+            'image'=>'required'
+        ]);
+        //store image
+        $file = request()->file('image');
+        $filename= $file->getClientOriginalName();
+
+        $file->storeAs('images/',$filename,'s3');
+        $s3= Storage::disk('s3')->url('images/'.$filename);
+        $image = Image::create([
+            'image_url'=> $s3
+        ]);
+
+        // collect fields and create category
+        $category_table['image_id'] = $image->id;
         $new_category = Category::create($category_table);
+
+        // create category -- subcategory link
         foreach($subcategories['subcategories'] as $subcategory){
             $pair =[
                 'category_id' => $new_category->id,
@@ -104,6 +124,19 @@ class CategoryController extends Controller
         $subcategories = $request->validate([
             'subcategories'=>'required'
         ]);
+        //store image
+        $file = request()->file('image');
+        $filename= $file->getClientOriginalName();
+
+        $file->storeAs('images/',$filename,'s3');
+        $s3= Storage::disk('s3')->url('images/'.$filename);
+        $image = Image::create([
+            'image_url'=> $s3
+        ]);
+
+        // collect fields and create category
+        $category_table['image_id'] = $image->id;
+
         $category->update($category_table);
         foreach($subcategories['subcategories'] as $subcategory){
             $pair =[
@@ -113,7 +146,7 @@ class CategoryController extends Controller
             CategoryHasSubcategory::create($pair);
         }
 
-        return redirect(route('admin.categories'))->with('message','category created successfully');
+        return redirect(route('admin.categories'))->with('message','category updated successfully');
     }
 
     /**

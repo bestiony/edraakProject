@@ -1,10 +1,25 @@
 @extends('layouts.admin')
 @section('content')
 
+
+<div class="container  flex flex-wrap mx-auto p-4 justify-center items-stretch">
+
+    @forelse ($subcategories as $subcategory)
+    <x-subcategory-card :subcategory="$subcategory" />
+    @empty
+    <h1>nothing to see here </h1>
+    @endforelse
+
+
+
+    {{$categories->links()}}
+
+</div>
 <div class="contrainer w-full items-start mx-auto flex flex-row p-3 m-3 justify-center">
     <form method="POST" action="{{route('admin.store-subcategory')}} "
     class=" p-3 rounded items-start  border-solid border
-    border-red-300 md:w-3/4 space-y-3 flex flex-col md:flex-row justify-between">
+    border-red-300 md:w-3/4 space-y-3 flex flex-col md:flex-row justify-between"
+    enctype="multipart/form-data">
         @csrf
         <div>
 
@@ -14,6 +29,11 @@
         class="rounded shadow-inner w-full p-2 my-2" required
         value="{{old('name')}}">
         @error('name')
+            <p class="text-red-400 text-sm">{{$message}} </p>
+        @enderror
+        <label for="image">Add Image</label>
+        <input class="border p-2" type="file" name="image" id="image" required >
+        @error('image')
             <p class="text-red-400 text-sm">{{$message}} </p>
         @enderror
         </div>
@@ -38,18 +58,5 @@
         </div>
 
     </form>
-</div>
-<div class="container space-x-3 flex flex-wrap mx-auto p-4 justify-center items-start">
-
-    @forelse ($subcategories as $subcategory)
-    <x-subcategory-card :subcategory="$subcategory" />
-    @empty
-    <h1>nothing to see here </h1>
-    @endforelse
-
-
-
-    {{$categories->links()}}
-
 </div>
 @endsection

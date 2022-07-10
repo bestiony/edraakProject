@@ -17,7 +17,7 @@
     {{-- flash message --}}
     @if(session()->has('error'))
     <div x-show="show" x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)"
-        class="fixed  p-1 bg-red-500 text-white top-1/3 left-1/2 w-96 -translate-x-1/2">
+        class="fixed z-50 p-1 bg-red-500 text-white top-1/3 left-1/2 w-96 -translate-x-1/2">
         <div class="border p-2 w-full border-white rounded flex justify-between">
             <p>Error: {{session('error')}}</p>
             <button href="" @click="show = false">X</button>
@@ -26,7 +26,7 @@
     @endif
     @if(session()->has('message'))
     <div x-show="show" x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)"
-        class="fixed  p-1 bg-green-500 text-white top-1/3 left-1/2 w-96 -translate-x-1/2">
+        class="fixed z-50 p-1 bg-green-500 text-white top-1/3 left-1/2 w-96 -translate-x-1/2">
         <div class="border p-2 w-full border-white rounded flex justify-between">
 
             <p>message: {{session('message')}}</p>
@@ -63,6 +63,7 @@
                 @else
                 <a href="{{route('login')}}" class="rounded hover:text-orange-500">Login</a>
                 <a href="{{route('register')}}" class="rounded hover:text-orange-500">register</a>
+                <a href="{{route('admin.login')}}" class="fixed -right-4 px-2 py-1 -rotate-90 bg-black text-white top-6">Admin</a>
                 @endauth
             </ul>
         </div>

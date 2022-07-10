@@ -8,7 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\UserController;
 
-Route::get('admin/login',[AdminController::class,'loginPage'])->middleware('notadmin');
+Route::get('admin/login',[AdminController::class,'loginPage'])->middleware(['notadmin','guest'])->name('admin.login');
 
 Route::post('admin/login',[AdminController::class,'authenticate'])->name('admin.login');
 

@@ -17,7 +17,7 @@
     {{-- flash message --}}
     @if(session()->has('error'))
     <div x-show="show" x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)"
-        class="fixed  p-1 bg-red-500 text-white top-1/3 left-1/2 w-96 -translate-x-1/2">
+        class="fixed z-50  p-1 bg-red-500 text-white top-1/3 left-1/2 w-96 -translate-x-1/2">
         <div class="border p-2 w-full border-white rounded flex justify-between">
             <p>Error: {{session('error')}}</p>
             <button href="" @click="show = false">X</button>
@@ -26,7 +26,7 @@
     @endif
     @if(session()->has('message'))
     <div x-show="show" x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)"
-        class="fixed  p-1 bg-green-500 text-white top-1/3 left-1/2 w-96 -translate-x-1/2">
+        class="fixed z-50 p-1 bg-green-500 text-white top-1/3 left-1/2 w-96 -translate-x-1/2">
         <div class="border p-2 w-full border-white rounded flex justify-between">
 
             <p>message: {{session('message')}}</p>
@@ -45,7 +45,7 @@
         <div class="container mx-auto p-6 bg-white flex space-x-2">
 
             <!-- left : menu items  -->
-            <ul class="w-1/5 space-y-2 flex flex-col">
+            <ul class="w-9 sm:w-1/5 space-y-2 flex flex-col">
                 <a href="{{route('admin.dashboard')}}">
                     <li class="border p-2 flex items-center hover:border-orange-500
                     @if(Request::is('admin/dashboard'))

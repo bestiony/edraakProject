@@ -4,7 +4,13 @@
             shadow-md hover:-translate-y-2 duration-300">
 
     <a class="flex flex-col h-full justify-end"
-    href="{{route('single-product',['product'=>$product->id])}}">
+    href="
+    @if(Auth::guard('admin')->check())
+    {{ route('admin.show', ['product'=>$product->id]) }}
+    @else
+    {{route('single-product',['product'=>$product->id])}}
+    @endif
+    ">
     <img class="max-h-64 self-center" src="{{asset($product->image->image_url)}}" alt="">
     <h4 class="font-bold text-xl ">
         {{$product->name}}
@@ -14,7 +20,7 @@
     <p class="text-ellipsis overflow-hidden h-6">{{$product->description}}</p>
     <p class="font-bold text-lg"> $ {{$product->price}} </p>
 
-
+    @if(!Auth::guard('admin')->check())
     <form class="relative h-5"
     action="{{route('add-to-cart',['product'=>$product->id])}}" method="POST">
         @csrf
@@ -22,4 +28,5 @@
             <i class="fa fa-cart-plus text-4xl " aria-hidden="true"></i>
         </button>
     </form>
+    @endif
 </div>

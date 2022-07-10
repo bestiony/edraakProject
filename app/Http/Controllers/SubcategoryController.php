@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
@@ -9,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\ProductHasSubcategory;
 use App\Models\CategoryHasSubcategory;
+use Illuminate\Support\Facades\Storage;
 
 class SubcategoryController extends Controller
 {
@@ -50,6 +52,21 @@ class SubcategoryController extends Controller
         $categories = $request->validate([
             'categories'=>'required'
         ]);
+        $check_image = $request->validate([
+            'image'=>'required'
+        ]);
+        //store image
+        $file = request()->file('image');
+        $filename= $file->getClientOriginalName();
+
+        $file->storeAs('images/',$filename,'s3');
+        $s3= Storage::disk('s3')->url('images/'.$filename);
+        $image = Image::create([
+            'image_url'=> $s3
+        ]);
+        $subcategory_table['image_id'] = $image->id;
+
+
         $new_subcategory = Subcategory::create($subcategory_table);
         foreach($categories['categories'] as $category){
             $pair =[
@@ -113,7 +130,19 @@ class SubcategoryController extends Controller
         $categories = $request->validate([
             'categories'=>'required'
         ]);
+        $check_image = $request->validate([
+            'image'=>'required'
+        ]);
+        //store image
+        $file = request()->file('image');
+        $filename= $file->getClientOriginalName();
 
+        $file->storeAs('images/',$filename,'s3');
+        $s3= Storage::disk('s3')->url('images/'.$filename);
+        $image = Image::create([
+            'image_url'=> $s3
+        ]);
+        $subcategory_table['image_id'] = $image->id;
 
         $subcategory->update($subcategory_table);
 
