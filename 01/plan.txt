@@ -51,6 +51,33 @@ DONE:::create cart model and controllers
 DONE:::create categories view
 
 
+admin layout :
+    DONE:::dashboard
+        DONE:::stats : users , products, orders , sales
+    products :
+        list of products
+        add new product
+        delete product
+        edit product
+    orders :
+        list of orders
+        single order
+        chaange order status
+    categories :
+        list
+        single
+        add
+        edit
+    subcategories :
+        list
+        single
+        add
+        edit
+    users :
+        list
+        single
+        ban / unban
+
 
 local env
 DB_CONNECTION=mysql
