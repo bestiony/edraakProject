@@ -75,7 +75,7 @@ class ProductController extends Controller
         // $image_url = $request->file('image')->storeAs('images/',$filename,'s3');
         // dd($image_url);
 
-        $image_url = $request->file('image')->store('images');
+        $image_url = $request->file('image')->store('images','public');
         $image = Image::create([
             'image_url'=> 'storage/'.$image_url
         ]);
