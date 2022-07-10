@@ -21,7 +21,7 @@
             <img src="{{asset('storage/images/logo.png')}}" class="h-10 ">
             </a>
             <!-- search -->
-            <form action="" class="flex order-last  items-center rounded-md border w-full md:w-1/2 p-1
+            <form action="{{route('products')}}" class="flex order-last  items-center rounded-md border w-full md:w-1/2 p-1
             border-gray-400 mx-auto ">
                 <input type="text" name="search" id="" class="w-full p-1 rounded-md  focus:outline-none  ">
                 <button>
@@ -35,6 +35,10 @@
                 <a href="{{route('cart')}}" class="rounded hover:text-orange-500">Cart</a>
                 @auth
                 <a href="{{route('orders')}}" class="rounded hover:text-orange-500">Profile</a>
+                <form action="{{route('logout')}}" method="post">
+                    @csrf
+                    <button>logout</button>
+                </form>
                 @else
                 <a href="{{route('login')}}" class="rounded hover:text-orange-500">Login</a>
                 <a href="{{route('register')}}" class="rounded hover:text-orange-500">register</a>
@@ -88,7 +92,7 @@
     <!-- js -->
 @yield('js')
 
-    
+
 
 </body>
 </html>
