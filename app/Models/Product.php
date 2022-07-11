@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\ReturnPolicy;
 use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -53,13 +54,41 @@ class Product extends Model
     }
 
 
-    public function scopeFilter($query){
-        if (request('search')){
-            $query->where('name', 'like','%'.request('search').'%')
-                ->orWhere('description','like','%'.request('search').'%');
-        }
-        if (request('category')){
-            $query->where('category_id','like','%'.request('category').'%');
-        }
+    public function scopeFilter($query, $filters){
+
+        $search = $filters['search'] ?? false;
+        $category = $filters['category']?? false;
+        $subcategory = $filters['subcategory']?? false;
+        $size = $filters['size']?? false;
+        $min = $filters['min']?? false;
+        $max = $filters['max']?? false;
+
+
+        $query->
+        when($search,function($query, $search){
+            return $query->where('name', 'like','%'.$search.'%')
+            ->orWhere('description','like','%'.request('search').'%');
+        })->
+        when($category,function($query, $category){
+            return $query->where('category_id','like','%'.$category.'%');
+        })->
+        when($subcategory,function($query, $subcategory){
+            $search = $subcategory;
+            $pivot = $this->subcategories()->getTable();
+            return$query->whereHas('subcategories', function($q) use($search , $pivot){
+                $q->where("{$pivot}.subcategory_id", $search);
+            });
+        })->
+        when($size,function($query, $size){
+            return $query->where('size',$size);
+        })->
+        when(($min && $max),function($query, $min,$max){
+            $range = [$min,$max];
+            return  $query->whereBetween('price',$range);
+        })
+        ;
+
+
+    
     }
 }

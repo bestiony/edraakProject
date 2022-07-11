@@ -50,7 +50,7 @@ create products view
 DONE:::create cart model and controllers
 DONE:::create categories view
 DONE:::product price remains untouched in customers' orders
-costumer can see product in order even if it is softdeleted
+DONE:::costumer can see product in order even if it is softdeleted
 add filter
     search
     category

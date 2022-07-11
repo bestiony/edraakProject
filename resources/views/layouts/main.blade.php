@@ -44,6 +44,14 @@
             <!-- search -->
             <form action="{{route('products')}}" class="flex order-last  items-center rounded-md border w-full md:w-1/2 p-1
             border-gray-400 mx-auto ">
+                @forelse (request()->query() as $key => $value)
+                    @if ($key == 'search' )
+                        @continue
+                    @endif
+                    <input type="hidden" name="{{$key}}" value="{{$value}}">
+                @empty
+
+                @endforelse
                 <input type="text" name="search" id="" class="w-full p-1 rounded-md  focus:outline-none  ">
                 <button>
                     <i class="fa fa-search text-orange-500 mr-1 text-lg " aria-hidden="true"></i>

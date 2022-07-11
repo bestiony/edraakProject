@@ -13,7 +13,14 @@
         <!-- category -->
         <form action="{{route('products')}}"
         class="border mx-4 lg:w-1/5 flex justify-start items-center">
+        @forelse (request()->query() as $key => $value)
+            @if ($key == 'category' )
+                @continue
+            @endif
+            <input type="hidden" name="{{$key}}" value="{{$value}}">
+        @empty
 
+        @endforelse
         <label class="p-1" for="category">Category :</label>
             <select
             class="lg:w-1/2 p-1"
@@ -28,13 +35,21 @@
         <!-- Subcategory -->
         <form action="{{route('products')}}"
         class="border mx-4 lg:w-1/5 flex justify-start items-center">
+        @forelse (request()->query() as $key => $value)
+            @if ($key == 'subcategory' )
+                @continue
+            @endif
+            <input type="hidden" name="{{$key}}" value="{{$value}}">
+        @empty
 
+        @endforelse
         <label class="p-1 lg:w-3/5" for="subcategory">Subcategory :</label>
             <select
             class="md:w-1/3 p-1"
             name="subcategory" id="subcategory" onchange="this.form.submit()">
                 <option value="">all</option>
                 @foreach ($subcategories as $subcategory)
+
                 <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
 
                 @endforeach
@@ -43,14 +58,22 @@
         </form>
         <!-- size -->
         <form action="{{route('products')}}"
-        class="border mx-4  lg:w-1/6 flex">
+        class="border mx-4  lg:w-1/6 flex items-center">
+        @forelse (request()->query() as $key => $value)
+                @if ($key == 'size' )
+                    @continue
+                @endif
+            <input type="hidden" name="{{$key}}" value="{{$value}}">
+        @empty
 
+        @endforelse
         <label class="p-1" for="size">Size :</label>
             <select
             class="w-auto p-1"
             name="size" id="size" onchange="this.form.submit()">
                 <option value="">all</option>
                 @foreach ($sizes as $id=> $size)
+
                 <option value="{{$id}}">{{$size}}</option>
                 @endforeach
             </select>
@@ -58,15 +81,22 @@
 
         <!-- price -->
         <form action="{{route('products')}}"
-        class="border mx-4 lg:w-1/5 flex space-x-3">
-        <label class="p-1" for="category">Price :</label>
+        class="border mx-4 lg:w-1/5 flex space-x-3 items-center p-2">
+        @forelse (request()->query() as $key => $value)
+            @if ($key == 'min' || $key=='max')
+                @continue
+            @endif
+            <input type="hidden" name="{{$key}}" value="{{$value}}">
+        @empty
+
+        @endforelse
         <input placeholder=" min"
             class="px-1 text-center shadow-inner w-14" type="number"
             name="min" id="min">
         <input placeholder=" max"
             class="px-1 text-center shadow-inner w-14" type="number"
             name="max" id="max">
-
+        <button class="rounded px-2 py-1 border-white border hover:border-orange-400 hover:text-orange-500 hover:border">filter price</button>
         </form>
     </div>
 
