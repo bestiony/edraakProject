@@ -34,7 +34,6 @@
         </div>
         </div>
     @endif
-    <x-confirm-message/>
     <section>
 
         <div class="container mx-auto p-6 flex">
@@ -102,7 +101,7 @@
                         <span class="hidden sm:block">. Subcategories</span></li>
                 </a>
 
-                    <li class="border flex p-2 hover:border-orange-500 flex items-center">
+                    <li class="border  p-2 hover:border-orange-500 flex items-center">
 
                         <form action="{{route('admin.logout')}}" method="POST" >
                             @csrf
@@ -118,6 +117,8 @@
             </div>
         </div>
     </section>
+    <x-confirm-message/>
+
 </body>
 <script>
     function showChecker (destination,prompt,method){
@@ -127,10 +128,10 @@
             box.classList.add('flex');
             var message = document.getElementById('message');
             var form = document.getElementById('form');
-            form.action = destination
             message.innerText = prompt
-            form.appendChild(method);
+            form.action = destination
             event.preventDefault();
+            form.appendChild(method);
         }
         function hideCkecker(){
             var box = document.getElementById('box');

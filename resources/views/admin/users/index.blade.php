@@ -38,17 +38,19 @@
                     <td>
                         @if ($user->status == 1)
 
-                        <form method="POST" action="{{ route('updateStatus', ['user'=>$user->id,'status_code'=>0]) }}">
+                        <form method="POST" action="{{ route('updateStatus', ['user'=>$user->id,'status_code'=>0]) }}"
+                            message='are you sure you want to ban user'
+                            onsubmit="showChecker(this.getAttribute('action'),this.getAttribute('message'),this.elements['_method'],this.elements['_token'])">
                             @csrf
-                            @method('PUT')
                             <button class="py-2 px-4 w-20 rounded bg-red-500 text-white hover:bg-red-300">
                                 Ban
                             </button>
                         </form>
                         @else
-                        <form method="POST" action="{{ route('updateStatus', ['user'=>$user->id,'status_code'=>1]) }}">
+                        <form method="POST" action="{{ route('updateStatus', ['user'=>$user->id,'status_code'=>1]) }}"
+                            message='are you sure you want to Unban user'
+                            onsubmit="showChecker(this.getAttribute('action'),this.getAttribute('message'))">
                             @csrf
-                            @method('PUT')
                             <button class="py-2 px-4 w-20 rounded bg-green-500 text-white hover:bg-red-300">
                                 Unban
                             </button>

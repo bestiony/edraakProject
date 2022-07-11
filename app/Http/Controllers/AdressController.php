@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Address;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+
 class AdressController extends Controller
 {
     public function create(Request $request){
@@ -12,7 +14,7 @@ class AdressController extends Controller
             'address_line_2'=>'string',
             'city'=>['string','required'],
             'state'=>'string',
-            'country'=>['string','required'],
+            'country'=>['string','required',Rule::in(Address::COUNTRIES)],
             'postal_code'=>['string','required']
         ]);
         // dd(auth()->id());

@@ -26,7 +26,7 @@
                 <label for="address_line_1" class="font-bold ">Address Line 1</label>
                 <input type="text" name="address_line_1" id="address_line_1"
                     class="outline-orange-500 p-2 border">
-                    @error('country')
+                    @error('address_line_1')
                     <p class="text-red-500 text-sm">
                         {{$message}}
                     </p>
@@ -37,7 +37,7 @@
                 <label for="address_line_2" class="font-bold ">Address Line 2</label>
                 <input type="text" name="address_line_2" id="address_line_2"
                     class="outline-orange-500 p-2 border">
-                    @error('country')
+                    @error('address_line_2')
                     <p class="text-red-500 text-sm">
                         {{$message}}
                     </p>
@@ -49,7 +49,7 @@
                 <label for="city" class="font-bold ">City</label>
                 <input type="text" name="city" id="city"
                     class="outline-orange-500 p-2 border">
-                    @error('country')
+                    @error('city')
                     <p class="text-red-500 text-sm">
                         {{$message}}
                     </p>
@@ -61,7 +61,7 @@
                 <label for="state" class="font-bold ">State</label>
                 <input type="text" name="state" id="state"
                     class="outline-orange-500 p-2 border">
-                    @error('country')
+                    @error('state')
                     <p class="text-red-500 text-sm">
                         {{$message}}
                     </p>
@@ -73,7 +73,7 @@
                 <label for="postal_code" class="font-bold ">Postal Code</label>
                 <input type="text" name="postal_code" id="postal_code"
                     class="outline-orange-500 p-2 border">
-                    @error('country')
+                    @error('postal_code')
                     <p class="text-red-500 text-sm">
                         {{$message}}
                     </p>

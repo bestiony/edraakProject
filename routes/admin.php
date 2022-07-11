@@ -87,6 +87,6 @@ Route::delete('categories/{category}/destroy',[CategoryController::class,'destro
     // Route::get('users/{user}/edit',[UserController::class,'edit'])->name('admin.edit-user');
     // Route::put('users/{user}/update',[UserController::class,'update'])->name('admin.update-user');
     // Route::delete('users/{user}/destroy',[UserController::class,'destroy'])->name('admin.destroy-user');
-    Route::put('users/status/{user}/{status_code}',[UserController::class,'updateStatus'])->name('updateStatus');
+    Route::post('users/status/{user}/{status_code}',[UserController::class,'updateStatus'])->name('updateStatus');
 
 });

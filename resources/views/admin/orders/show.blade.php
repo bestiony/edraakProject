@@ -10,8 +10,11 @@
             <h3 class="text-2xl font-bold text-blue-400 rounded border-b-slate-400">{{$status}}</h3>
             <form method="POST" action="{{route('admin.update-order',['order'=>$order->id])}}"
                 message='are you sure you want to order status'
-                onsubmit="showChecker(this.getAttribute('action'),this.getAttribute('message'),this.elements['_method'])">
+                onsubmit="showChecker(this.getAttribute('action'),
+                                    this.getAttribute('message'),
+                                    this.elements['_method']">
                 @csrf
+                @method('POST')
                 <select name="status" id="">
                     @foreach($statuses as $key=> $status)
                     <option value="{{$key}}">{{$status}}</option>
