@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained();
 
             $table->integer('quantity')->nullable(false);
+            $table->integer('price_when_ordered')->nullable(false);
+
             // $table->integer('order_id')->unsigned();
             // $table->integer('product_id')->unsigned();
             // $table->foreign('order_id')

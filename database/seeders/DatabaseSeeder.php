@@ -263,7 +263,8 @@ class DatabaseSeeder extends Seeder
                 'user_id'=>1,
                 'status'=>1,
                 'address_id'=> 1,
-                'total' => 111
+                'total' => 111,
+                'items' => 9
             ]);
         }
 
@@ -273,16 +274,19 @@ class DatabaseSeeder extends Seeder
                 'order_id'=>1,
                 'product_id'=>1,
                 'quantity'=>3,
+                'price_when_ordered'=>100
             ]);
             OrderHasProduct::create([
                 'order_id'=>1,
                 'product_id'=>8,
                 'quantity'=>1,
+                'price_when_ordered'=>100
             ]);
             OrderHasProduct::create([
                 'order_id'=>1,
                 'product_id'=>3,
-                'quantity'=>5
+                'quantity'=>5,
+                'price_when_ordered'=>100
             ]);
         }
 

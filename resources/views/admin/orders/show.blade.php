@@ -28,6 +28,9 @@
         </div>
     </div>
     <div class="p-4 flex flex-col space-y-4">
+        @php
+            $items = 0;
+        @endphp
         @foreach ($order->products as $product)
             <div class="flex space-x-2 p-2 rounded border-2 border-solid border-gray-200">
                 <img src="{{$product->image->image_url}}" alt="" class="w-32">
@@ -38,15 +41,18 @@
                     <p>
                         {{$product->description}}
                     </p>
-                    <p class="">${{$product->price}}  X   Quantity: {{$quantity = $order->get_product_quantity($product->id)}}</p>
-                    <p>Total: ${{$product->price * $quantity}}</p>
+                    <p class="">${{$price=$order->get_product_price_when_ordered($product->id)}}  X   Quantity: {{$quantity = $order->get_product_quantity($product->id)}}</p>
+                    <p>Total: ${{$price * $quantity}}</p>
                 </div>
             </div>
+            @php
+                $items += $quantity;
+            @endphp
         @endforeach
         <div class="flex justify-between  p-2 rounded border-4 border-solid border-black">
             <div>
                 <p>Number of products in order : {{$order->products->count()}} </p>
-                <p>Number of items in order : </p>
+                <p>Number of items in order : {{$items}} </p>
             </div>
             <div>
                 <h4 class="font-bold text-xl">Total: ${{$order->total}}</h4>

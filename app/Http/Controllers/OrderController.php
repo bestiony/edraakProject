@@ -92,8 +92,10 @@ class OrderController extends Controller
 
         $cart = session()->get('cart');
         $total = 0;
+        $items = 0;
         foreach ( $cart as $item){
             $total += $item['total'];
+            $items += $item['quantity'];
         }
         $address = new AdressController;
         if($oldaddress){
@@ -112,14 +114,16 @@ class OrderController extends Controller
             'user_id'=>$user->id,
             'address_id'=>$addressId,
             'status'=>'1',
-            'total'=> $total
+            'total'=> $total,
+            'items'=>$items
         ]);
 
         foreach($cart as $item){
             $orderProduct = [
                 'order_id'=>$order->id,
                 'product_id'=>$item['product']->id,
-                'quantity'=>$item['quantity']
+                'quantity'=>$item['quantity'],
+                'price_when_ordered'=>$item['product']->price
             ];
             OrderHasProduct::create($orderProduct);
         }
@@ -138,7 +142,13 @@ class OrderController extends Controller
         if ( $order->user_id != auth()->id()){
             abort(403);
         }
-        $products = $order->products;
+        $products_raw = OrderHasProduct::select('product_id')->where('order_id',$order->id)->get();
+        $list =[];
+        foreach($products_raw as $product){
+            $list[]= $product['product_id'];
+        }
+        $products = Product::withTrashed()->whereIn('id',$list)->get();
+        // dd($products);
         return view('user.orders.show',[
             'order'=>$order,
             'products'=>$products,

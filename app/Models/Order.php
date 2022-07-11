@@ -33,11 +33,19 @@ class Order extends Model
     }
 
     public function products(){
-        return $this->belongsToMany(Product::class, 'order_has_products')->withPivot('quantity');
+        return $this->belongsToMany(Product::class, 'order_has_products')->withPivot(['quantity','price_when_ordered']);
     }
 
     public function get_product_quantity($Productid){
-        return $this->products->where('id',$Productid)->first()->pivot->quantity;
+        $quantity = OrderHasProduct::select('quantity')->where('order_id',$this->id)->where('product_id',$Productid)->get()->toArray()[0]['quantity'];
+        return $quantity;
+        // return $this->products->where('id',$Productid)->first()->pivot->quantity;
+    }
+
+    public function get_product_price_when_ordered($Productid){
+        $price = OrderHasProduct::select('price_when_ordered')->where('order_id',$this->id)->where('product_id',$Productid)->get()->toArray()[0]['price_when_ordered'];
+        return $price;
+        // return $this->products->where('id',$Productid)->first()->pivot->price_when_ordered;
     }
 
     public function address(){

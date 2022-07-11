@@ -43,7 +43,7 @@
     <!-- bottom :items  -->
     <div class=" mx-auto flex flex-col  md:w-2/3 bg-white p-6 mt-10">
         <!-- item 1 -->
-        @foreach ($order->products as $product)
+        @foreach ($products as $product)
 
         <div class="flex flex-wrap justify-around">
             <img src="{{asset($product->image->image_url)}}" class="h-40 ">
@@ -55,7 +55,7 @@
                 <div class="flex mt-auto">
 
                     <p class="">
-                        ${{$price = $product->price}} X {{$quantity = $order->get_product_quantity($product->id)}}
+                        ${{$price = $order->get_product_price_when_ordered($product->id)}} X {{$quantity = $order->get_product_quantity($product->id)}}
                     </p>
                     <p class="ml-auto font-bold">
                         subtotal: ${{$subtotal = $price*$quantity}}

@@ -49,33 +49,41 @@ DONE:::create Admin auth ( middlwear || gate || sth else)
 create products view
 DONE:::create cart model and controllers
 DONE:::create categories view
-
+DONE:::product price remains untouched in customers' orders
+costumer can see product in order even if it is softdeleted
+add filter
+    search
+    category
+    subcategory
+    size
+    price
+    full filter
 
 admin layout :
     DONE:::dashboard
         DONE:::stats : users , products, orders , sales
     products :
-        list of products
-        add new product
+        DONE:::list of products
+        DONE:::add new product
         delete product
-        edit product
+        DONE:::edit product
     orders :
-        list of orders
-        single order
+        DONE:::list of orders
+        DONE:::single order
         chaange order status
     categories :
-        list
-        single
-        add
+        DONE:::list
+        DONE:::single
+        DONE:::add
         edit
     subcategories :
-        list
-        single
-        add
+        DONE:::list
+        DONE:::single
+        DONE:::add
         edit
     users :
-        list
-        single
+        DONE:::list
+        DONE:::single
         ban / unban
 
 

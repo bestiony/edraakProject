@@ -67,7 +67,7 @@
                 <tr class=" border-black rounded-md ">
                     <td class="py-3 px-6" >{{$order->id}} </td>
                     <td class="py-3 px-6 hidden  lg:block">{{$order->created_at}} </td>
-                    <td class="py-3 px-6">{{$order->products->count()}} </td>
+                    <td class="py-3 px-6">{{$order->items}} </td>
                     <td class="py-3 px-6">{{$order->total}} </td>
                     <td class="py-3 px-6">{{$statuses[$order->status]}} </td>
                     <td><a href="{{ route('single-order', ['order'=>$order->id]) }}"
