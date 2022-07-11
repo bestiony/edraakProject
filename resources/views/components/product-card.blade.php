@@ -12,7 +12,7 @@
     @endif
     ">
     <img class="max-h-64 self-center" src="{{asset($product->image->image_url)}}" alt="">
-    <h4 class="font-bold text-xl ">
+    <h4 class="font-bold text-xl text-ellipsis overflow-hidden h-6">
         {{$product->name}}
     </h4>
     </a>

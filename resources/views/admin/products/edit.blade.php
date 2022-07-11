@@ -65,7 +65,9 @@
         @error('category_id')
             <p class="text-red-400 text-sm">{{$message}} </p>
         @enderror
-
+        </div>
+        {{-- right --}}
+        <div class="flex flex-col space-y-3 w-1/2">
         <label for="subcategories" class="text-l w-max">SubCategory</label>
         <div class="flex flex-wrap items-start justify-start">
 
@@ -109,9 +111,12 @@
         @error('return_policy_id')
             <p class="text-red-400 text-sm">{{$message}} </p>
         @enderror
+        <div class="flex justify-around">
+
         <button class="roudned bg-green-400 px-3 py-1 text-white hover:bg-green-300">Update Product</button>
         <a href="{{ route('admin.show', ['product'=>$product->id]) }} " class="rounded bg-red-500 px-3 py-1 text-white">Back</a>
-
+        </div>
+        </div>
     </form>
 </div>
 

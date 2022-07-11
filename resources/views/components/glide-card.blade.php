@@ -6,11 +6,11 @@
         <img src="{{asset($product->image->image_url)}}" class="max-h-72 md:max-w-1/4">
         <!-- right -->
         <div class="flex flex-col p-6 items-start md:w-1/3 text-center md:text-left">
-            <h2 class="text-4xl font-bold md:w-1/2">
+            <h2 class="text-4xl font-bold md:w-1/2 text-ellipsis overflow-hidden h-20">
                 {{$product->name}}
             </h2>
             <hr class=" my-6 md:w-1/2">
-            <p class="text-sm my-2">
+            <p class="text-sm my-2 text-ellipsis overflow-hidden h-16">
                 {{$product->description}}
             </p>
             <a href="{{route('single-product',['product'=>$product->id])}}" class="bg-orange-500 hover:bg-orange-400 text-white py-2 px-4 rounded-lg self-end">

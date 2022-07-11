@@ -24,7 +24,7 @@
             <!-- address 1 -->
             <div class="flex flex-col">
                 <label for="address_line_1" class="font-bold ">Address Line 1</label>
-                <input type="text" name="address_line_1" id="address_line_1"
+                <input value="{{old('address_line_1')}}" type="text" name="address_line_1" id="address_line_1"
                     class="outline-orange-500 p-2 border">
                     @error('address_line_1')
                     <p class="text-red-500 text-sm">
@@ -35,7 +35,7 @@
             <!-- address 2 -->
             <div class="flex flex-col">
                 <label for="address_line_2" class="font-bold ">Address Line 2</label>
-                <input type="text" name="address_line_2" id="address_line_2"
+                <input value="{{old('address_line_2')}}" type="text" name="address_line_2" id="address_line_2"
                     class="outline-orange-500 p-2 border">
                     @error('address_line_2')
                     <p class="text-red-500 text-sm">
@@ -47,7 +47,7 @@
             <!-- city -->
             <div class="flex flex-col">
                 <label for="city" class="font-bold ">City</label>
-                <input type="text" name="city" id="city"
+                <input value="{{old('city')}}" type="text" name="city" id="city"
                     class="outline-orange-500 p-2 border">
                     @error('city')
                     <p class="text-red-500 text-sm">
@@ -59,7 +59,7 @@
             <!-- state -->
             <div class="flex flex-col">
                 <label for="state" class="font-bold ">State</label>
-                <input type="text" name="state" id="state"
+                <input value="{{old('state')}}" type="text" name="state" id="state"
                     class="outline-orange-500 p-2 border">
                     @error('state')
                     <p class="text-red-500 text-sm">
@@ -71,7 +71,7 @@
             <!-- postal code  -->
             <div class="flex flex-col">
                 <label for="postal_code" class="font-bold ">Postal Code</label>
-                <input type="text" name="postal_code" id="postal_code"
+                <input value="{{old('postal_code')}}" type="text" name="postal_code" id="postal_code"
                     class="outline-orange-500 p-2 border">
                     @error('postal_code')
                     <p class="text-red-500 text-sm">

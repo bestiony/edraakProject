@@ -21,7 +21,7 @@
 <div class="container flex flex-wrap mx-auto p-4 justify-center">
 
     @forelse ($products as $product)
-    <x-product-card :product="$product"/>
+    <x-product-card :product="$product" />
     @empty
     <h1>nothing to see here </h1>
     @endforelse

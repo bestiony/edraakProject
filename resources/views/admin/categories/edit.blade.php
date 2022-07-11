@@ -51,7 +51,7 @@
         @error('subcategories')
             <p class="text-red-400 text-sm">{{$message}} </p>
         @enderror
-        <button class="roudned bg-green-400 px-3 py-1 text-white hover:bg-green-300">Add </button>
+        <button class="roudned bg-green-400 px-3 py-1 text-white hover:bg-green-300">Update </button>
         </div>
 
     </form>

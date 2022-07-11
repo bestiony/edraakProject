@@ -36,7 +36,7 @@
         <div class="flex flex-col items-center p-2 justify-center rounded border-solid border-2 w-1/4 h-36">
             <a class="h-2/3 flex flex-col items-center" href="{{route('admin.show', ['product'=>$product->id])}}">
             <img class="h-2/3" src="{{asset($product->image->image_url)}}" alt="">
-            <p class="text-bold text-sm">{{$product->name}}</p>
+            <p class="text-bold text-sm text-ellipsis overflow-hidden h-6">{{$product->name}}</p>
             </a>
             <form method="POST" action="{{ route('unlink-product-subcategory', ['subcategory'=>$subcategory->id,'product'=>$product->id]) }}">
                 @csrf
