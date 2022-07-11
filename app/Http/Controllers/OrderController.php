@@ -114,8 +114,8 @@ class OrderController extends Controller
             'user_id'=>$user->id,
             'address_id'=>$addressId,
             'status'=>'1',
+            'items'=>$items,
             'total'=> $total,
-            'items'=>$items
         ]);
 
         foreach($cart as $item){

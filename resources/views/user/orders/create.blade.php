@@ -13,13 +13,7 @@
             <!-- country -->
             <div class="flex flex-col">
                 <label for="country" class="font-bold ">Country</label>
-                <select name="country" id="country"
-                    class="bg-gray-100 p-2 border">
-
-                    <option value="dz" class="py-2">algeria</option>
-                    <option value="dz" class="py-2">algeria</option>
-                    <option value="dz" class="py-2">algeria</option>
-                </select>
+                <x-countries-drowpdown />
                 @error('country')
                 <p class="text-red-500 text-sm">
                     {{$message}}

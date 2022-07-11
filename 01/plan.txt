@@ -52,12 +52,12 @@ DONE:::create categories view
 DONE:::product price remains untouched in customers' orders
 DONE:::costumer can see product in order even if it is softdeleted
 add filter
-    search
-    category
-    subcategory
-    size
-    price
-    full filter
+    DONE:::search
+    DONE:::category
+    DONE:::subcategory
+    DONE:::size
+    DONE:::price
+    DONE:::full filter
 
 admin layout :
     DONE:::dashboard
@@ -85,7 +85,7 @@ admin layout :
         DONE:::list
         DONE:::single
         ban / unban
-
+confirmation message when attempting serious changes 
 
 local env
 DB_CONNECTION=mysql

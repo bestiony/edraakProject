@@ -62,7 +62,7 @@ class Product extends Model
         $size = $filters['size']?? false;
         $min = $filters['min']?? false;
         $max = $filters['max']?? false;
-
+        $range = [$min,$max];
 
         $query->
         when($search,function($query, $search){
@@ -82,13 +82,14 @@ class Product extends Model
         when($size,function($query, $size){
             return $query->where('size',$size);
         })->
-        when(($min && $max),function($query, $min,$max){
+        when(($min && $max),function($query) use($min , $max){
             $range = [$min,$max];
+            // dd($range);
             return  $query->whereBetween('price',$range);
         })
         ;
 
 
-    
+
     }
 }

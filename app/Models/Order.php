@@ -26,7 +26,7 @@ class Order extends Model
         5 => ' text-red-600 ',
     ];
 
-    protected $fillable = ['user_id','address_id','status','total'];
+    protected $fillable = ['user_id','address_id','status','total','items'];
 
     public function user(){
         return $this->belongsTo(User::class,'user_id');

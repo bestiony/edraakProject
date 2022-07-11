@@ -24,7 +24,8 @@ class ProductController extends Controller
     {
         $search = request('search')??'';
         return view('user.products.index',[
-            'products'=>Product::latest()->filter(request(['search','category','subcategory','size','min','max']))->paginate('12'),
+            'products'=>Product::latest()->filter(request([
+                'search','category','subcategory','size','min','max']))->paginate('12'),
             'categories'=>Category::all(),
             'subcategories'=>Subcategory::all(),
             'sizes'=> Product::SIZES

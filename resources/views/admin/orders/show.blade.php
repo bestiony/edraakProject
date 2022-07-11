@@ -20,7 +20,11 @@
             </form>
         </div>
         <div>
-
+            <p class="text-lg">
+                customer name :
+                <span class="font-bold">
+                    {{$order->user->first_name." ".$order->user->last_name}}</p>
+                </span>
             <p class="p-3">
                 {{$order->address->address_line_1}}
             </p>

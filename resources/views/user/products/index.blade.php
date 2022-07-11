@@ -112,9 +112,19 @@
     justify-center items-center flex-wrap ">
         <!-- product card -->
 
-        @foreach ($products as $product)
+        @forelse ($products as $product)
         <x-product-card :product="$product"/>
-        @endforeach
+        @empty
+        <h1 class="text-3xl md:w-1/3 text-center h-96 leading-10">
+            <i class="fa fa-meh-o fa-5x" aria-hidden="true"></i><br>
+            Oops we can't find the products that match your
+            @if (request()->has('search'))
+            search
+            @else
+            filters!
+            @endif
+        </h1>
+        @endforelse
 
     </div>
 </section>
