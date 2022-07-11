@@ -89,7 +89,7 @@
         <div class=" p-6 bg-white">
             <p class="text-xl py-2">Items : <span class="font-bold">{{$items}}</span></p>
             <p class="text-xl py-2 mb-2">Total : <span class="font-bold">${{$total}}</span></p>
-            <a href="{{route('checkout')}}" class="rounded bg-orange-500 py-2 px-4
+            <a href="{{route('create-address')}}" class="rounded bg-orange-500 py-2 px-4
              text-white hover:bg-orange-300">
              Proceed to Checkout</a>
         </div>

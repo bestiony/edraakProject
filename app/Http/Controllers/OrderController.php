@@ -67,16 +67,42 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request,$oldaddress= false)
     {
+
         $cart = session()->get('cart');
         if (!$cart){
             return redirect()->route('products')->with('error','nothing to checkout, cart empty');
         }
 
+
+
+        $user = auth()->user();
+        $address = new AdressController;
+
+        if($oldaddress){
+            if(!Address::find($oldaddress)){
+                return back()->with('error','sorry address doesn\'exists!');
+            }
+            if($user->addresses->contains($oldaddress)){
+                $used_address = Address::find($oldaddress);
+            }else{
+                return back()->with('error','this address is not yours');
+            }
+        } else{
+            $used_address =$address->store($request);
+        }
+
+        $total = 0;
+        foreach ( $cart as $item){
+            $total += $item['total'];
+        }
+
         return view('user.orders.create',[
-            'addresses'=>auth()->user()->addresses,
-            'bg_colour' => ' bg-gray-100 '
+            'address' => $used_address,
+            'total'=>$total,
+            'user_name'=> $user->first_name." ".$user->last_name,
+            'user_email'=> $user->email
         ]);
     }
 
@@ -86,33 +112,24 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$oldaddress= false)
+    public function store(Request $request,Address $address)
     {
         $user = auth()->user();
 
         $cart = session()->get('cart');
+        if (!$cart){
+            return redirect()->route('products')->with('error','nothing to checkout, cart empty');
+        }
         $total = 0;
         $items = 0;
         foreach ( $cart as $item){
             $total += $item['total'];
             $items += $item['quantity'];
         }
-        $address = new AdressController;
-        if($oldaddress){
-            if(!Address::find($oldaddress)){
-                return back()->with('error','sorry address doesn\'exists!');
-            }
-            if($user->addresses->contains($oldaddress)){
-                $addressId = $oldaddress;
-            }else{
-                return back()->with('error','this address is not yours');
-            }
-        } else{
-            $addressId =$address->create($request);
-        }
+
         $order = Order::create([
             'user_id'=>$user->id,
-            'address_id'=>$addressId,
+            'address_id'=>$address->id,
             'status'=>'1',
             'items'=>$items,
             'total'=> $total,

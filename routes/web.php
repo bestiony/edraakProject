@@ -1,12 +1,13 @@
 <?php
 
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Subcategory;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AdressController;
 use App\Http\Controllers\ProductController;
-use App\Models\Category;
-use App\Models\Subcategory;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,10 +61,11 @@ Route::middleware('auth')->group(function(){
 
     // show  check out page
     // add delivery and payment information
-    Route::get('checkout',[OrderController::class,'create'])->name('checkout');
+    Route::get('address/create',[AdressController::class,'create'])->name('create-address');
 
+    Route::get('checkout/{oldaddress}',[OrderController::class,'create'])->name('checkout');
     // confirm order (create)
-    Route::post('confirm-order/{oldaddress}',[OrderController::class,'store'])->name('confirm-order');
+    Route::post('confirm-order/{address}',[OrderController::class,'store'])->name('confirm-order');
 
 
     // show orders info page

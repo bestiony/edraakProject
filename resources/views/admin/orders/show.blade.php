@@ -8,20 +8,33 @@
         <div class="border-solid border-gray-500 border-2 rounded p-3">
             <p>Status:</p>
             <h3 class="text-2xl font-bold text-blue-400 rounded border-b-slate-400">{{$status}}</h3>
+            <div class="flex">
+
             <form method="POST" action="{{route('admin.update-order',['order'=>$order->id])}}"
-                message='are you sure you want to order status'
-                onsubmit="showChecker(this.getAttribute('action'),
-                                    this.getAttribute('message'),
-                                    this.elements['_method']">
+
+                class=""
+                >
                 @csrf
                 @method('POST')
-                <select name="status" id="">
+                <select name="status" id="" class="border">
                     @foreach($statuses as $key=> $status)
+                    @if ($key== 5)
+                        @continue
+                    @endif
                     <option value="{{$key}}">{{$status}}</option>
                     @endforeach
                 </select>
-                <input type="submit" value="Update">
+                <button class="rounded px-3 py-1 bg-orange-500 text-white">Update</button>
             </form>
+            <a href="{{route('admin.update-order',['order'=>$order->id])}}"
+                class="rounded px-3 py-1 bg-red-500 text-white mx-4"
+                message='are you sure you want to cancel order'
+                onclick="showChecker(this.getAttribute('href'),
+                                    this.getAttribute('message'),
+                                    this.elements['_method']"
+                >Cancel Order</a>
+        </div>
+
         </div>
         <div>
             <p class="text-lg">

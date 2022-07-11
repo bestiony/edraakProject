@@ -1,9 +1,8 @@
 @props(['address'])
 
-<form action="{{route('confirm-order',['oldaddress'=>$address->id])}}"
+<form action="{{route('checkout',['oldaddress'=>$address->id])}}"
     class="flex flex-col border p-1 rounded hover:border-orange-400"
-    method="POST">
-    @csrf
+    method="get">
     <p for=""> {{
             $address->address_line_1.", ".
             $address->address_line_2.", ".
