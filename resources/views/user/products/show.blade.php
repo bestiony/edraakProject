@@ -45,6 +45,12 @@
                 <p class="text-sm">
                     {{$product->description}}
                 </p>
+                <h4 class="font-bold">
+                    Return Policy:
+                </h4>
+                <p class="text-sm">
+                    {{$product->returnPolicy->description}}
+                </p>
             </div>
         </div>
     </section>

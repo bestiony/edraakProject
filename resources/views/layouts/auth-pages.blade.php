@@ -9,10 +9,31 @@
     <link rel="stylesheet" href="https://unpkg.com/@glidejs/glide@3.5.2/dist/css/glide.core.min.css">
     <link rel="stylesheet" href="https://unpkg.com/@glidejs/glide@3.5.2/dist/css/glide.theme.min.css">
     <link rel="icon" type="image/x-icon" href="{{asset('storage/images/icon.png')}}">
+    <script src="//unpkg.com/alpinejs" defer></script>
 
     <title>Amouna</title>
 </head>
 <body>
+    {{-- flash message --}}
+    @if(session()->has('error'))
+    <div x-show="show" x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)"
+        class="fixed z-50 p-1 bg-red-500 text-white top-1/3 left-1/2 w-96 -translate-x-1/2">
+        <div class="border p-2 w-full border-white rounded flex justify-between">
+            <p>Error: {{session('error')}}</p>
+            <button href="" @click="show = false">X</button>
+        </div>
+        </div>
+    @endif
+    @if(session()->has('message'))
+    <div x-show="show" x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)"
+        class="fixed z-50 p-1 bg-green-500 text-white top-1/3 left-1/2 w-96 -translate-x-1/2">
+        <div class="border p-2 w-full border-white rounded flex justify-between">
+
+            <p>message: {{session('message')}}</p>
+            <button href="" @click="show = false">X</button>
+        </div>
+        </div>
+    @endif
     @yield('content')
 </body>
 </html>

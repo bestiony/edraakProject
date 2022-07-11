@@ -19,7 +19,7 @@
             type="text" name="first_name" id="first_name"
             class="border rounded p-2 focus:outline-orange-500
             outline-offset-2 focus:shadow-lg focus:shadow-orange-400/40 "
-            autofocus required>
+            autofocus required value="{{old('first_name')}}">
             @error('first_name')
                 <p class="text-red-500 text-sm">
                     {{$message}}
@@ -32,7 +32,7 @@
             type="text" name="last_name" id="last_name"
             class="border rounded p-2 focus:outline-orange-500
             outline-offset-2 focus:shadow-lg focus:shadow-orange-400/40 "
-            required>
+            required value="{{old('last_name')}}">
             @error('last_name')
                 <p class="text-red-500 text-sm">
                     {{$message}}
@@ -45,7 +45,7 @@
             type="email" name="email" id="email"
             class="border rounded p-2 focus:outline-orange-500
             outline-offset-2 focus:shadow-lg focus:shadow-orange-400/40 "
-            required>
+            required value="{{old('email')}}">
             @error('email')
                 <p class="text-red-500 text-sm">
                     {{$message}}
