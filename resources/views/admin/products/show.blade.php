@@ -20,7 +20,9 @@
     <a href="{{ route('admin.edit-product', ['product'=>$product->id]) }}" class="px-3 py-1 rounded bg-green-500 text-white hover:bg-green-300">
         Edit
     </a>
-    <form method="POST" action="{{ route('admin.destroy-product', ['product'=>$product->id]) }}">
+    <form method="POST" action="{{ route('admin.destroy-product', ['product'=>$product->id]) }}"
+        message='are you sure you want to delete this product'
+                onsubmit="showChecker(this.getAttribute('action'),this.getAttribute('message'),this.elements['_method'])">
         @csrf
         @method('DELETE')
         <button class="px-3 py-1 rounded bg-red-500 text-white hover:bg-red-300">Delete</button>

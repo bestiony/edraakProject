@@ -12,11 +12,13 @@
         <a href="{{ route('admin.edit-category', ['category'=>$category->id]) }}" class="px-3 py-1 rounded bg-green-500 text-white hover:bg-green-300">
             Edit
         </a>
-        <form method="POST" action="{{ route('admin.destroy-category', ['category'=>$category->id]) }}">
+        <form message='are you sure you want to delete this category'
+        onsubmit="showChecker(this.getAttribute('action'),this.getAttribute('message'),this.elements['_method'])"
+        method="POST" action="{{ route('admin.destroy-category', ['category'=>$category->id]) }}">
             @csrf
             @method('DELETE')
             {{-- <input type="hidden" name="name"> --}}
-            <button class="px-3 py-1 rounded bg-red-500 text-white hover:bg-red-300">Delete</button>
+            <button  class="px-3 py-1 rounded bg-red-500 text-white hover:bg-red-300">Delete</button>
         </form>
 
     </div>

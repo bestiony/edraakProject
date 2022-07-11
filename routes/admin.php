@@ -27,7 +27,7 @@ Route::get('orders/{order}',[OrderController::class,'adminShow'])->name('admin.s
 
 // Route::get('orders/{order}/edit',[OrderController::class,'adminEdit'])->name('admin.edit-order');
 
-Route::put('orders/{order}/update',[OrderController::class,'update'])->name('admin.update-order');
+Route::post('orders/{order}/update',[OrderController::class,'update'])->name('admin.update-order');
 
 
         // --------admin <> products ---------

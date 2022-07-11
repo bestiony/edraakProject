@@ -34,6 +34,7 @@
         </div>
         </div>
     @endif
+    <x-confirm-message/>
     <section>
 
         <div class="container mx-auto p-6 flex">
@@ -118,5 +119,25 @@
         </div>
     </section>
 </body>
+<script>
+    function showChecker (destination,prompt,method){
+            var box = document.getElementById('box');
 
+            box.classList.remove('hidden');
+            box.classList.add('flex');
+            var message = document.getElementById('message');
+            var form = document.getElementById('form');
+            form.action = destination
+            message.innerText = prompt
+            form.appendChild(method);
+            event.preventDefault();
+        }
+        function hideCkecker(){
+            var box = document.getElementById('box');
+            box.classList.remove('flex');
+            box.classList.add('hidden');
+            event.preventDefault();
+
+        }
+</script>
 </html>
