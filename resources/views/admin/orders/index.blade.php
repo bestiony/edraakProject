@@ -1,52 +1,55 @@
 @extends('layouts.admin')
 @section('content')
 <div class="container flex flex-col mx-auto p-4 space-y-4">
+    <h1 class="font-bold text-2xl text-center">
+        Orders
+    </h1>
+    <div class="container  flex flex-col p-3 border-solid border-2 rounded">
 
-<div class=" bg-gray-200 w-2/3 mx-auto justify-between p-3 rounded flex space-x-3">
-    <div class="p-2">
-        <h3 class="font-bold text-lg">User Name</h3>
-    </div>
-    <div class="p-2">
-        <h3 class="font-bold text-lg">items </h3>
-    </div>
-    <div class="p-2">
-        <h3 class="font-bold text-lg">Total</h3>
-    </div>
-    <div class="p-2">
-        <h3 class="font-bold text-lg">Status</h3>
-    </div>
-    <div class="p-2">
-        <h3 class="font-bold text-lg">Order ID</h3>
-    </div>
-    <div class="p-2">
-        <h3 class="font-bold text-lg">Created at</h3>
-    </div>
+<table class="table-fixed border-separate border-spacing-y-2.5">
+    <thead class="text-left bg-gray-50 ">
+        <tr class="py-10 leading-10">
+            <th>Order ID</th>
+            <th>User Name</th>
+            <th>items</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Created at</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @forelse ($orders as $order)
+        <tr class="hover:border">
+            <td>{{$order->id }}</td>
+            <td>{{$order->user->first_name . " ".$order->user->last_name}}</td>
+            <td>{{$order->items}}</td>
+            <td>{{$order->total}}</td>
+            <td>{{$statuses[$order->status]}}</td>
+            <td>{{$order->created_at}}</td>
+            <td>
+                <a
+                    href="{{ route('admin.single-order', ['order'=>$order->id]) }}"
+                    class="py-2 px-4 w-9 rounded bg-blue-500 text-white hover:bg-blue-300">
+                        Details
+                </a>
+            </td>
+
+        </tr>
+        @empty
+            <h2 class="text-xl font-bold">
+                You Don't Have Any Orders Yet !
+            </h2>
+        @endforelse
+
+    </tbody>
+</table>
+{{ $orders->links() }}
 </div>
-    @foreach ($orders as $order)
-    <a href="{{ route('admin.single-order', ['order'=>$order->id]) }}">
-        <div class="w-2/3 bg-gray-100 hover:outline-dashed hover:cursor-pointer mx-auto justify-between p-3 rounded flex space-x-3">
-            <div class="p-2">
-                <h3 class="font-bold text-lg">{{$order->user->first_name}}</h3>
-            </div>
-            <div class="p-2">
-                <h3 class="font-bold text-lg">{{$order->items}}</h3>
-            </div>
-            <div class="p-2">
-                <h3 class="font-bold text-lg">{{$order->total }}</h3>
-            </div>
-            <div class="p-2">
-                <h3 class="font-bold text-lg">{{$statuses[$order->status]  }}</h3>
-            </div>
-            <div class="p-2">
-                <h3 class="font-bold text-lg">{{$order->id }}</h3>
-            </div>
-            <div class="p-2">
-                <h3 class="font-bold text-lg">{{$order->created_at }}</h3>
-            </div>
-        </div>
-        </a>
 
-    @endforeach
-    {{ $orders->links() }}
+
+
+
 </div>
 @endsection

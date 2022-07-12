@@ -26,8 +26,8 @@
                 </select>
                 <button class="rounded px-3 py-1 bg-orange-500 text-white">Update</button>
             </form>
-            
-                <form message='are you sure you want to delete this product'
+
+                <form message='are you sure you want to cancel this order'
                 onsubmit="showChecker(this.getAttribute('action'),
                                     this.getAttribute('message'),
                                     this.elements['status'])"
