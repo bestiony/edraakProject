@@ -42,7 +42,7 @@
                 <h4 class="font-bold">
                     Description:
                 </h4>
-                <p class="text-sm">
+                <p class="text-sm overflow-hidden text-ellipsis">
                     {{$product->description}}
                 </p>
                 <h4 class="font-bold">

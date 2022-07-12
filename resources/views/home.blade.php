@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
  <!-- carousel -->
- <section class="bg-gray-900 mt-40 py-10">
+ <section class="bg-gray-900 mt-30 py-10">
     <div class="container mx-auto p-6 mt-20 bg-white">
         <div class="glide">
             <div class="glide__track border" data-glide-el="track">

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://unpkg.com/@glidejs/glide@3.5.2/dist/css/glide.core.min.css">
     <link rel="stylesheet" href="https://unpkg.com/@glidejs/glide@3.5.2/dist/css/glide.theme.min.css">
     <link rel="icon" type="image/x-icon" href="{{asset('storage/images/icon.png')}}">
+    <link rel="stylesheet" href="{{asset('css/extra.css')}}">
     <script src="//unpkg.com/alpinejs" defer></script>
 
     <title>Amouna</title>
@@ -37,7 +38,7 @@
      <!-- nav bar -->
      <nav class="shadow-md  relative bg-red-200 z-40 " >
         <div class="bg-white  shadow-md fixed top-0 left-0 right-0">
-        <div class="container mx-auto bg-white  flex p-6 flex-wrap  ">
+        <div class="container mx-auto bg-white justify-between  flex p-6 flex-wrap  ">
             <a href="{{route('home')}}">
             <img src="{{asset('storage/images/logo.png')}}" class="h-10 ">
             </a>
@@ -59,22 +60,26 @@
             </form>
 
             <!-- menu -->
-            <ul class="flex p-1 md:order-last ml-auto items-center space-x-4 px-4">
-                <a href="{{route('products')}}" class="rounded hover:text-orange-500">Products</a>
-                <a href="{{route('cart')}}" class="rounded hover:text-orange-500">Cart</a>
-                @auth
-                <a href="{{route('orders')}}" class="rounded hover:text-orange-500">Profile</a>
-                <form action="{{route('logout')}}" method="post">
-                    @csrf
-                    <button>logout</button>
-                </form>
-                @else
-                <a href="{{route('login')}}" class="rounded hover:text-orange-500">Login</a>
-                <a href="{{route('register')}}" class="rounded hover:text-orange-500">register</a>
-                <a href="{{route('admin.login')}}" class="fixed -right-4 px-2 py-1 -rotate-90 bg-black text-white top-6">Admin</a>
-                @endauth
+            <ul  class="hidden open  lg:flex p-1 md:order-last ml-auto items-center
+            space-x-4 px-4">
+            <x-menu-content />
             </ul>
+            {{-- menu button --}}
+            <button id="menu-btn" class="block self-center  md:order-last hamburger  lg:hidden focus:outline-none">
+                <span class="hamburger-top"></span>
+                <span class="hamburger-middle"></span>
+                <span class="hamburger-bottom"></span>
+
+            </button>
         </div>
+        </div>
+        {{-- mobile menu --}}
+        <div class="lg:hidden">
+            <ul id="menu" class=" p-8 space-y-6 flex-col items-center self-end bg-white mt-28 md:mt-20
+                left-4 right-4 font-bold hidden md:left-1/2 drop-shadow-md fixed">
+                <x-menu-content />
+
+            </ul>
         </div>
     </nav>
 @yield('content')
@@ -120,8 +125,16 @@
 
 
     <!-- js -->
+    <script>
+        let btn = document.getElementById('menu-btn')
+        let menu = document.getElementById('menu')
+        btn.addEventListener('click',()=>{
+            menu.classList.toggle('flex')
+            menu.classList.toggle('hidden')
+            btn.classList.toggle('open')
+        })
+    </script>
 @yield('js')
-
 
 
 </body>
