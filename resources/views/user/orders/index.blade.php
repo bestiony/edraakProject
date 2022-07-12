@@ -48,14 +48,14 @@
 
     </div>
     {{-- right --}}
-    <div class="m-8 items-center pt-4 flex flex-col p-3 w-max lg:w-3/5 rounded-l bg-white">
+    <div class=" sm:m-8 items-center pt-4 flex flex-col sm:p-3 w-max lg:w-3/5 rounded-l bg-white">
         <h3 class="text-xl font-bold">Customer Orders</h3>
         <table class="w-full  border-spacing-2 border-separate ">
             <thead class="text-left bg-gray-50">
                 <tr>
                     <th>Order ID</th>
-                    <th class="hidden lg:block">Created at</th>
-                    <th>Items</th>
+                    <th class="hidden lg:table-cell">Created at</th>
+                    <th class="hidden lg:table-cell">Items</th>
                     <th>Total</th>
                     <th>Status</th>
                     <th></th>
@@ -64,16 +64,15 @@
             <tbody>
                 @forelse ($user->orders as $order)
 
-                <tr class=" border-black rounded-md ">
+                <tr class=" border-black rounded-md text-sm">
                     <td class="py-3 px-6" >{{$order->id}} </td>
-                    <td class="py-3 px-6 hidden  lg:block">{{$order->created_at}} </td>
-                    <td class="py-3 px-6">{{$order->items}} </td>
+                    <td class="py-3 px-6 hidden  lg:table-cell">{{$order->created_at}} </td>
+                    <td class="py-3 px-6 hidden  lg:table-cell">{{$order->items}} </td>
                     <td class="py-3 px-6">{{$order->total}} </td>
                     <td class="py-3 px-6">{{$statuses[$order->status]}} </td>
                     <td><a href="{{ route('single-order', ['order'=>$order->id]) }}"
-                        class="rounded
-                        bg-orange-500 text-white hover:bg-orange-300
-                        py-2 px-4 ">Details</a></td>
+                        class="rounded bg-orange-500 text-white hover:bg-orange-300
+                        py-2 px-4 text-sm">Details</a></td>
                 </tr>
             </a>
                 @empty

@@ -15,5 +15,5 @@
     @else
     <a href="{{route('login')}}" class="rounded hover:text-orange-500">Login</a>
     <a href="{{route('register')}}" class="rounded hover:text-orange-500">register</a>
-    <a href="{{route('admin.login')}}" class="fixed -right-4 px-2 py-1 -rotate-90 bg-black text-white top-6">Admin</a>
+    <a href="{{route('admin.login')}}" class="fixed -right-3 lg:-right-10 px-2 py-1 -rotate-90 bg-black text-white top-2">Admin</a>
     @endauth

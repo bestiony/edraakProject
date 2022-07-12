@@ -90,7 +90,7 @@
 @endsection
 @section('js')
     <script>
-         function showChecker (destination,prompt,status){
+        function showChecker (destination,prompt,status){
             event.preventDefault();
             var box = document.getElementById('box');
             box.classList.remove('hidden');
