@@ -26,13 +26,16 @@
                 </select>
                 <button class="rounded px-3 py-1 bg-orange-500 text-white">Update</button>
             </form>
-            <a href="{{route('admin.update-order',['order'=>$order->id])}}"
-                class="rounded px-3 py-1 bg-red-500 text-white mx-4"
-                message='are you sure you want to cancel order'
-                onclick="showChecker(this.getAttribute('href'),
+            
+                <form message='are you sure you want to delete this product'
+                onsubmit="showChecker(this.getAttribute('action'),
                                     this.getAttribute('message'),
-                                    this.elements['_method']"
-                >Cancel Order</a>
+                                    this.elements['status'])"
+                method="POST" action="{{route('admin.update-order',['order'=>$order->id])}}">
+                    @csrf
+                    <input type="hidden" name="status" value="5">
+                    <button class="rounded px-3 py-1 bg-red-500 text-white mx-4">Cancel Order</button>
+                </form>
         </div>
 
         </div>
@@ -84,4 +87,26 @@
 
 
 
+@endsection
+@section('js')
+    <script>
+         function showChecker (destination,prompt,status){
+            event.preventDefault();
+            var box = document.getElementById('box');
+            box.classList.remove('hidden');
+            box.classList.add('flex');
+            var message = document.getElementById('message');
+            var form = document.getElementById('form');
+            form.append(status);
+            message.innerText = prompt
+            form.action = destination
+        }
+        function hideCkecker(){
+            var box = document.getElementById('box');
+            box.classList.remove('flex');
+            box.classList.add('hidden');
+            event.preventDefault();
+
+        }
+    </script>
 @endsection

@@ -60,3 +60,6 @@
     </form>
 </div>
 @endsection
+@section('js')
+    <x-confirm-message-script/>
+@endsection

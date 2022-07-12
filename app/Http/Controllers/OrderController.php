@@ -235,4 +235,9 @@ class OrderController extends Controller
             'status' => Order::$ORDER_STATUSES[$order->status]
         ]);
     }
+
+
+    public function cancel(){
+
+    }
 }
