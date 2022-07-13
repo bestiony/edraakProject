@@ -37,15 +37,18 @@
             </td>
 
         </tr>
+    </tbody>
+</table>
+{{ $orders->links() }}
         @empty
-            <h2 class="text-xl font-bold">
+    </tbody>
+</table>
+            <h2 class="text-xl font-bold p-8 text-center">
                 You Don't Have Any Orders Yet !
             </h2>
         @endforelse
 
-    </tbody>
-</table>
-{{ $orders->links() }}
+
 </div>
 
 

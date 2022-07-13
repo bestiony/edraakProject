@@ -2,6 +2,7 @@
 @section('content')
 
 
+<h2 class="text-2xl text-center">Subcategories</h2>
 <div class="container  flex flex-wrap mx-auto p-4 justify-center items-stretch">
 
     @forelse ($subcategories as $subcategory)
@@ -41,14 +42,18 @@
 
         <label for="subcategories" class="text-xl w-max">categories</label>
         <div class="flex flex-wrap items-start justify-start">
-            @foreach ($categories as $category)
+            @forelse ($categories as $category)
             <div class="flex p-3 ">
             <label class="mr-3" for="{{$category->name}} ">
                 {{$category->name}}
             </label>
             <input value="{{$category->id}}" type="checkbox" name="categories[]" id="{{$category->name}}">
             </div>
-            @endforeach
+            @empty
+            <h2 class="text-xl font-bold p-8 text-center">
+                You Don't Have Any subcategories Yet !
+            </h2>
+            @endforelse
         </div>
 
         @error('categories')

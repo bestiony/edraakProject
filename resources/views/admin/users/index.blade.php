@@ -59,14 +59,17 @@
 
                     </td>
                 </tr>
+            </tbody>
+        </table>
                 @empty
-                    <h2 class="text-xl font-bold">
+            </tbody>
+        </table>
+                    <h2 class="text-xl font-bold p-8 text-center">
                         You Don't Have Any Users Yet !
                     </h2>
                 @endforelse
 
-            </tbody>
-        </table>
+
 
     </div>
 

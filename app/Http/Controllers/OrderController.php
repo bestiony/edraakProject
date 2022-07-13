@@ -24,7 +24,7 @@ class OrderController extends Controller
         // dd($user->orders);
         return view('user.orders.index',[
             'user'=>$user,
-            'orders'=>$user->orders->paginate(1),
+            'orders'=>$user->orders? $user->orders->paginate(6) : null,
             'statuses' => Order::$ORDER_STATUSES,
             'bg_colour' => ' bg-gray-100 '
         ]);
@@ -220,7 +220,7 @@ class OrderController extends Controller
 
     public function adminIndex(){
         return view('admin.orders.index',[
-            'orders'=> Order::all()->last()->paginate(5),
+            'orders'=> Order::all()->isEmpty()? []: Order::all()->last()->paginate(5),
             'statuses' => Order::$ORDER_STATUSES
         ]);
     }

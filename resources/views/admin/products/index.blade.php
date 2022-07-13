@@ -27,8 +27,10 @@
     @endforelse
 
 
+<div class="w-full">
 
     {{$products->links()}}
+</div>
 
 </div>
 @endsection
