@@ -45,7 +45,7 @@ Route::get('/product/{product}',[ProductController::class,'show'])->name('single
 
 
 
-Route::middleware('auth')->group(function(){
+Route::middleware(['auth','verified'])->group(function(){
     // add to cart order
     Route::post('add-to-cart/{product}',[CartController::class,'store'])->name('add-to-cart');
 

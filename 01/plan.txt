@@ -65,27 +65,40 @@ admin layout :
     products :
         DONE:::list of products
         DONE:::add new product
-        delete product
+        DONE:::delete product
         DONE:::edit product
     orders :
         DONE:::list of orders
         DONE:::single order
-        chaange order status
+        DONE:::chaange order status
     categories :
         DONE:::list
         DONE:::single
         DONE:::add
-        edit
+        DONE:::edit
     subcategories :
         DONE:::list
         DONE:::single
         DONE:::add
-        edit
+        DONE:::edit
     users :
         DONE:::list
         DONE:::single
-        ban / unban
-confirmation message when attempting serious changes 
+        DONE:::ban / unban
+DONE:::confirmation message when attempting serious changes
+
+
+Extra features :
+    DONE:::email confirmation
+    password reset
+    payment gate
+    tests
+    costumer <> admin messaging
+
+
+
+
+
 
 local env
 DB_CONNECTION=mysql

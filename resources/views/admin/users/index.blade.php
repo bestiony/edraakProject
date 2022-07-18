@@ -12,6 +12,7 @@
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
+                    <th>verified</th>
                     <th>Orders</th>
                     <th>status</th>
                     <th></th>
@@ -25,6 +26,9 @@
                     <td>{{$user->first_name}}</td>
                     <td>{{$user->last_name}}</td>
                     <td>{{$user->email}}</td>
+                    <td >
+                        {{$user->email_verified_at??' not verified'}}
+                    </td>
                     <td>{{$user->orders->count()}}</td>
                     <td>{{$users_statuses[$user->status]}}</td>
 
@@ -59,8 +63,7 @@
 
                     </td>
                 </tr>
-            </tbody>
-        </table>
+
                 @empty
             </tbody>
         </table>
@@ -68,7 +71,8 @@
                         You Don't Have Any Users Yet !
                     </h2>
                 @endforelse
-
+            </tbody>
+        </table>
 
 
     </div>
