@@ -1,7 +1,7 @@
 @extends('layouts.auth-pages')
 @section('content')
 <section>
-    <div class="container mx-ruto p-6 flex flex-col items-center">
+    <div class="container mx-auto p-6 flex flex-col items-center">
         <a href="{{route('home')}}" class="w-1/3 sm:w-1/6 mx-auto">
             <img class="" src="{{asset('storage/images/logo.png')}}" alt="">
         </a>
@@ -39,6 +39,9 @@
                     {{$message}}
                 </p>
             @enderror
+            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                {{ __('Forgot your password?') }}
+            </a>
             <button class="bg-orange-500 py-2  px-4 rounded text-white
             hover:bg-orange-300 w-full sm:w-80 mx-auto">
                 Sign In

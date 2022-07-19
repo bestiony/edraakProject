@@ -5,39 +5,31 @@
         <a href="{{route('home')}}" class="w-1/3 sm:w-1/6 mx-auto">
             <img class="" src="{{asset('storage/images/logo.png')}}" alt="">
         </a>
-        <form action="{{ route('register') }}" method="POST"
+        <form action="{{ route('password.update') }}" method="POST"
             class="w-full sm:w-96 mx-auto border p-5 flex flex-col
                 space-y-1
             ">
             @csrf
-            <h2 class="font-bold text-2xl">
-                Register
-            </h2>
-            <!-- first_name -->
-            <label class="font-bold" for="email">First Name</label>
-            <input
-            type="text" name="first_name" id="first_name"
-            class="border rounded p-2 focus:outline-orange-500
-            outline-offset-2 focus:shadow-lg focus:shadow-orange-400/40 "
-            autofocus required value="{{old('first_name')}}">
-            @error('first_name')
-                <p class="text-red-500 text-sm">
-                    {{$message}}
-                </p>
-            @enderror
 
-            <!-- last_name -->
-            <label class="font-bold" for="email">Last Name</label>
-            <input
-            type="text" name="last_name" id="last_name"
-            class="border rounded p-2 focus:outline-orange-500
-            outline-offset-2 focus:shadow-lg focus:shadow-orange-400/40 "
-            required value="{{old('last_name')}}">
-            @error('last_name')
-                <p class="text-red-500 text-sm">
-                    {{$message}}
-                </p>
-            @enderror
+            <h2 class="font-bold text-2xl">
+                Reset Password
+            </h2>
+            <input type="hidden" name="token" value="{{ $request->route('token') }}">
+            @if ($errors->any())
+
+            <div class="text-red-400">
+                Ops something went wrong
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>
+                            * {{$error}}
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
+
 
             <!-- email -->
             <label class="font-bold" for="email">Email</label>
@@ -45,7 +37,7 @@
             type="email" name="email" id="email"
             class="border rounded p-2 focus:outline-orange-500
             outline-offset-2 focus:shadow-lg focus:shadow-orange-400/40 "
-            required value="{{old('email')}}">
+            required value="{{old('email', $request->email)}}" readonly>
             @error('email')
                 <p class="text-red-500 text-sm">
                     {{$message}}
@@ -78,9 +70,8 @@
             @enderror
             <button class="bg-orange-500 py-2  px-4 rounded text-white
             hover:bg-orange-300 w-full sm:w-80 mx-auto">
-            Register
+            Reset Password
         </button>
-        <a href="{{route('login')}}" class="text-orange-500">I have an account!</a>
         </form>
 
         </div>
