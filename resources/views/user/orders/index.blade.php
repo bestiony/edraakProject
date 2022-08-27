@@ -75,15 +75,15 @@
                         py-2 px-4 text-sm">Details</a></td>
                 </tr>
             </a>
-        </tbody>
-    </table>
+
                 @empty
             </tbody>
         </table>
                 <p class="text-sm text-red-500 text-center p-8">No orders yet</p>
                 @endforelse
 
-
+            </tbody>
+        </table>
     </div>
 </div>
 
